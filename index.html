@@ -1,272 +1,59 @@
 <!-- FILE: index.html -->
-<!-- VERSION: v3.0 FULL_REPLACE -->
-<!-- PURPOSE: 4~5세 파닉스 1년 모바일 웹앱 / 챈트 / 음성 / 녹음 / 따라쓰기 / 보상 / 주간 콘텐츠 -->
+<!-- VERSION: v3.1 FULL_REPLACE -->
+<!-- PURPOSE: 4~5세 파닉스 모바일 웹앱 / 느린 챈트 / 소리찾기 수정 / 녹음재생 안정화 / 아이용 UI 개선 -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-  <title>4~5세 파닉스 1년 놀이 앱</title>
-  <style>
-    :root{
-      --ink:#0f172a;
-      --muted:#64748b;
-      --line:#e2e8f0;
-      --bg1:#fff7ed;
-      --bg2:#eff6ff;
-      --dark:#0f172a;
-      --orange:#f97316;
-      --sky:#0284c7;
-      --pink:#db2777;
-      --green:#059669;
-      --yellow:#facc15;
-      --card:#ffffff;
-    }
-    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-    body{
-      margin:0;
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-      background:linear-gradient(180deg,var(--bg1) 0%,#fff 42%,var(--bg2) 100%);
-      color:var(--ink);
-    }
-    button,input{font-family:inherit}
-    button{border:0;cursor:pointer}
-    .app{max-width:480px;margin:0 auto;min-height:100vh;padding-bottom:102px}
-    header{
-      position:sticky;top:0;z-index:20;
-      background:rgba(255,255,255,.92);backdrop-filter:blur(14px);
-      border-bottom:1px solid #e5e7eb;padding:16px 16px 14px;
-    }
-    .top{display:flex;align-items:center;justify-content:space-between;gap:12px}
-    .eyebrow{font-size:12px;color:#d97706;font-weight:950;margin:0}
-    h1{font-size:22px;margin:3px 0 0;letter-spacing:-.5px}
-    .spark{width:50px;height:50px;border-radius:18px;background:#fef3c7;display:grid;place-items:center;font-size:28px;box-shadow:0 8px 18px rgba(217,119,6,.15)}
-    .summary{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
-    .summary-card{background:white;border-radius:18px;padding:10px;box-shadow:0 7px 18px rgba(15,23,42,.06)}
-    .summary-card.dark{background:var(--dark);color:white}
-    .summary-card p{margin:0;color:var(--muted);font-size:10px;font-weight:900}
-    .summary-card.dark p{color:#cbd5e1}
-    .summary-card strong{display:block;font-size:15px;margin-top:4px;white-space:nowrap}
-    main{padding:16px}.page{display:none;animation:fade .2s ease}.page.active{display:block}@keyframes fade{from{opacity:.4;transform:translateY(8px)}to{opacity:1;transform:none}}
-    .hero{overflow:hidden;border-radius:30px;background:white;box-shadow:0 14px 34px rgba(15,23,42,.1)}
-    .hero-head{padding:22px;background:linear-gradient(135deg,#fcd34d,#fed7aa)}
-    .hero-line{display:flex;align-items:center;justify-content:space-between;gap:10px}.phase{font-size:12px;color:#92400e;font-weight:950}.hero-title{font-size:28px;font-weight:950;letter-spacing:-.6px;margin-top:5px}.hero-detail{margin-top:11px;color:#7c2d12;font-size:14px;line-height:1.45;font-weight:800}.emoji{font-size:58px}
-    .hero-body{padding:16px}.sound-box{display:flex;justify-content:space-between;align-items:center;background:#f8fafc;border-radius:24px;padding:17px}.sound-letter{font-size:62px;font-weight:950;line-height:1}.sound-right{text-align:right}.sound-right strong{font-size:22px}.sound-right p{margin:5px 0 0;color:var(--muted);font-size:13px}.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}.chip{background:#e0f2fe;color:#075985;border-radius:999px;padding:8px 12px;font-size:13px;font-weight:950}
-    .section-title{margin:24px 0 10px;font-size:18px;font-weight:950;display:flex;align-items:center;gap:7px}.card{background:var(--card);border-radius:25px;padding:16px;margin-bottom:12px;box-shadow:0 8px 20px rgba(15,23,42,.065)}
-    .mission-list{display:grid;gap:10px}.mission{display:flex;align-items:flex-start;gap:12px;background:white;border-radius:24px;padding:14px;box-shadow:0 7px 18px rgba(15,23,42,.055)}.mission.done{background:#ecfdf5}.mission-icon{width:42px;height:42px;border-radius:16px;background:#f1f5f9;display:grid;place-items:center;font-size:22px;flex-shrink:0}.mission.done .mission-icon{background:#bbf7d0}.mission-text{flex:1}.mission-text strong{font-size:15px}.mission-text p{margin:5px 0 0;color:var(--muted);font-size:13px;line-height:1.45}.mission-check{font-size:22px;color:var(--green);font-weight:950}
-    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.btn{min-height:48px;border-radius:18px;font-weight:950;padding:10px;font-size:14px}.btn.dark{background:var(--dark);color:white}.btn.orange{background:var(--orange);color:white}.btn.sky{background:var(--sky);color:white}.btn.pink{background:var(--pink);color:white}.btn.green{background:var(--green);color:white}.btn.light{background:white;color:var(--ink);border:1px solid var(--line)}.btn.yellow{background:#fef3c7;color:#92400e}.btn:disabled{opacity:.45}.result{margin-top:12px;background:#f8fafc;border-radius:18px;padding:12px;font-size:13px;line-height:1.5;color:#475569}.result b{color:var(--ink)}
-    .reward{display:flex;align-items:center;justify-content:space-between;gap:12px;background:linear-gradient(135deg,#fef3c7,#fce7f3);border-radius:26px;padding:16px;margin-top:14px}.stars{font-size:26px;letter-spacing:2px}.reward p{margin:4px 0 0;color:#7c2d12;font-size:13px;font-weight:800}
-    .trace-wrap{border-radius:24px;border:2px dashed #cbd5e1;overflow:hidden;background:white}.trace-head{display:flex;justify-content:space-between;align-items:center;background:#f8fafc;padding:10px 12px;font-size:13px;color:#475569}.trace-letter{font-weight:950;color:var(--ink);font-size:18px}canvas{display:block;width:100%;height:230px;touch-action:none;background:linear-gradient(#fff,#fff),repeating-linear-gradient(0deg,transparent 0 56px,#e5e7eb 57px 58px)}
-    .choice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.choice{background:#f8fafc;border:2px solid transparent;border-radius:22px;padding:14px;text-align:center;font-weight:950;min-height:72px}.choice .big{font-size:34px;display:block}.choice.correct{border-color:#22c55e;background:#ecfdf5}.choice.wrong{border-color:#ef4444;background:#fef2f2}.week-card,.phase-card{width:100%;text-align:left;background:white;border-radius:24px;padding:15px;margin-bottom:10px;box-shadow:0 7px 18px rgba(15,23,42,.055)}.week-card.active{background:var(--dark);color:white}.week-card p,.phase-card p{margin:5px 0 0;color:var(--muted);font-size:13px;line-height:1.45}.week-card.active p{color:#cbd5e1}.phase-card small{font-weight:900;color:var(--muted)}.phase-card h3{margin:5px 0 0}.notice{background:#e0f2fe;border-radius:26px;padding:16px;font-size:14px;line-height:1.55}.search-box{position:relative;margin-bottom:12px}.search-box input{width:100%;height:48px;border-radius:18px;border:1px solid var(--line);outline:none;padding:0 14px 0 42px}.search-box span{position:absolute;left:14px;top:12px}.scroll-list{max-height:62vh;overflow-y:auto;padding-right:3px}
-    nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-top:1px solid #e5e7eb;padding:10px 12px 14px;z-index:30}.nav-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.nav-btn{border-radius:18px;padding:9px 4px;background:transparent;color:var(--muted);font-size:12px;font-weight:950}.nav-btn.active{background:var(--dark);color:white}.nav-btn span{display:block;font-size:21px;margin-bottom:2px}
-    .hidden{display:none!important}
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+<title>4~5세 파닉스 1년 놀이 앱</title>
+<style>
+:root{--ink:#0f172a;--muted:#64748b;--line:#e2e8f0;--dark:#0f172a;--orange:#f97316;--sky:#0284c7;--pink:#db2777;--green:#059669;--yellow:#facc15;--red:#ef4444;--card:#fff}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:linear-gradient(180deg,#fff7ed 0%,#fff 42%,#eff6ff 100%);color:var(--ink)}button,input{font-family:inherit}button{border:0;cursor:pointer}.app{max-width:480px;margin:0 auto;min-height:100vh;padding-bottom:104px}header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.93);backdrop-filter:blur(14px);border-bottom:1px solid #e5e7eb;padding:16px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px}.eyebrow{font-size:12px;color:#d97706;font-weight:950;margin:0}h1{font-size:22px;margin:3px 0 0;letter-spacing:-.5px}.spark{width:50px;height:50px;border-radius:18px;background:#fef3c7;display:grid;place-items:center;font-size:28px}.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}.summary-card{background:white;border-radius:18px;padding:10px;box-shadow:0 7px 18px rgba(15,23,42,.06)}.summary-card.dark{background:var(--dark);color:white}.summary-card p{margin:0;color:var(--muted);font-size:10px;font-weight:900}.summary-card.dark p{color:#cbd5e1}.summary-card strong{display:block;font-size:15px;margin-top:4px;white-space:nowrap}main{padding:16px}.page{display:none;animation:fade .2s ease}.page.active{display:block}@keyframes fade{from{opacity:.4;transform:translateY(8px)}to{opacity:1;transform:none}}.hero{overflow:hidden;border-radius:30px;background:white;box-shadow:0 14px 34px rgba(15,23,42,.1)}.hero-head{padding:22px;background:linear-gradient(135deg,#fcd34d,#fed7aa)}.hero-line{display:flex;align-items:center;justify-content:space-between;gap:10px}.phase{font-size:12px;color:#92400e;font-weight:950}.hero-title{font-size:28px;font-weight:950;letter-spacing:-.6px;margin-top:5px}.hero-detail{margin-top:11px;color:#7c2d12;font-size:14px;line-height:1.45;font-weight:800}.emoji{font-size:58px}.hero-body{padding:16px}.sound-box{display:flex;justify-content:space-between;align-items:center;background:#f8fafc;border-radius:24px;padding:17px}.sound-letter{font-size:62px;font-weight:950;line-height:1}.sound-right{text-align:right}.sound-right strong{font-size:22px}.sound-right p{margin:5px 0 0;color:var(--muted);font-size:13px}.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}.chip{background:#e0f2fe;color:#075985;border-radius:999px;padding:8px 12px;font-size:13px;font-weight:950}.section-title{margin:24px 0 10px;font-size:18px;font-weight:950;display:flex;align-items:center;gap:7px}.card{background:var(--card);border-radius:25px;padding:16px;margin-bottom:12px;box-shadow:0 8px 20px rgba(15,23,42,.065)}.mission-list{display:grid;gap:10px}.mission{display:flex;align-items:flex-start;gap:12px;background:white;border-radius:24px;padding:14px;box-shadow:0 7px 18px rgba(15,23,42,.055)}.mission.done{background:#ecfdf5}.mission-icon{width:42px;height:42px;border-radius:16px;background:#f1f5f9;display:grid;place-items:center;font-size:22px;flex-shrink:0}.mission.done .mission-icon{background:#bbf7d0}.mission-text{flex:1}.mission-text strong{font-size:15px}.mission-text p{margin:5px 0 0;color:var(--muted);font-size:13px;line-height:1.45}.mission-check{font-size:22px;color:var(--green);font-weight:950}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.btn{min-height:48px;border-radius:18px;font-weight:950;padding:10px;font-size:14px}.btn.dark{background:var(--dark);color:white}.btn.orange{background:var(--orange);color:white}.btn.sky{background:var(--sky);color:white}.btn.pink{background:var(--pink);color:white}.btn.green{background:var(--green);color:white}.btn.light{background:white;color:var(--ink);border:1px solid var(--line)}.btn.yellow{background:#fef3c7;color:#92400e}.btn.red{background:#fee2e2;color:#991b1b}.btn:disabled{opacity:.45}.result{margin-top:12px;background:#f8fafc;border-radius:18px;padding:12px;font-size:13px;line-height:1.5;color:#475569}.result b{color:var(--ink)}.reward{display:flex;align-items:center;justify-content:space-between;gap:12px;background:linear-gradient(135deg,#fef3c7,#fce7f3);border-radius:26px;padding:16px;margin-top:14px}.stars{font-size:26px;letter-spacing:2px}.reward p{margin:4px 0 0;color:#7c2d12;font-size:13px;font-weight:800}.trace-wrap{border-radius:24px;border:2px dashed #cbd5e1;overflow:hidden;background:white}.trace-head{display:flex;justify-content:space-between;align-items:center;background:#f8fafc;padding:10px 12px;font-size:13px;color:#475569}.trace-letter{font-weight:950;color:var(--ink);font-size:18px}canvas{display:block;width:100%;height:230px;touch-action:none;background:linear-gradient(#fff,#fff),repeating-linear-gradient(0deg,transparent 0 56px,#e5e7eb 57px 58px)}.choice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.choice{background:#f8fafc;border:2px solid transparent;border-radius:22px;padding:14px;text-align:center;font-weight:950;min-height:82px}.choice .big{font-size:36px;display:block}.choice.correct{border-color:#22c55e;background:#ecfdf5}.choice.wrong{border-color:#ef4444;background:#fef2f2}.week-card,.phase-card{width:100%;text-align:left;background:white;border-radius:24px;padding:15px;margin-bottom:10px;box-shadow:0 7px 18px rgba(15,23,42,.055)}.week-card.active{background:var(--dark);color:white}.week-card p,.phase-card p{margin:5px 0 0;color:var(--muted);font-size:13px;line-height:1.45}.week-card.active p{color:#cbd5e1}.phase-card small{font-weight:900;color:var(--muted)}.phase-card h3{margin:5px 0 0}.notice{background:#e0f2fe;border-radius:26px;padding:16px;font-size:14px;line-height:1.55}.search-box{position:relative;margin-bottom:12px}.search-box input{width:100%;height:48px;border-radius:18px;border:1px solid var(--line);outline:none;padding:0 14px 0 42px}.search-box span{position:absolute;left:14px;top:12px}.scroll-list{max-height:62vh;overflow-y:auto;padding-right:3px}.mini-note{font-size:12px;color:#64748b;line-height:1.45;margin-top:8px}nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-top:1px solid #e5e7eb;padding:10px 12px 14px;z-index:30}.nav-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.nav-btn{border-radius:18px;padding:9px 4px;background:transparent;color:var(--muted);font-size:12px;font-weight:950}.nav-btn.active{background:var(--dark);color:white}.nav-btn span{display:block;font-size:21px;margin-bottom:2px}
+</style>
 </head>
 <body>
 <div class="app">
-  <header>
-    <div class="top">
-      <div><p class="eyebrow">4~5세 전용 · 하루 15~20분</p><h1>1년 파닉스 놀이 앱</h1></div>
-      <div class="spark">✨</div>
-    </div>
-    <div class="summary">
-      <div class="summary-card dark"><p>오늘</p><strong id="summaryDay">Day 1</strong></div>
-      <div class="summary-card"><p>주차</p><strong id="summaryWeek">1주차</strong></div>
-      <div class="summary-card"><p>별</p><strong id="summaryStars">0개</strong></div>
-      <div class="summary-card"><p>연속</p><strong id="summaryStreak">0일</strong></div>
-    </div>
-  </header>
-
-  <main>
-    <section id="todayPage" class="page active">
-      <div class="hero">
-        <div class="hero-head">
-          <div class="hero-line">
-            <div>
-              <div class="phase" id="phaseText">소리 친해지기</div>
-              <div class="hero-title" id="mainTitle">소리 놀이</div>
-            </div>
-            <div class="emoji" id="emoji">☀️</div>
-          </div>
-          <div class="hero-detail" id="heroDetail">s /s/ / sun</div>
-        </div>
-        <div class="hero-body">
-          <div class="sound-box">
-            <div><div style="font-size:13px;color:#64748b;font-weight:800">오늘의 소리</div><div class="sound-letter" id="letterText">s</div></div>
-            <div class="sound-right"><strong id="soundText">/s/</strong><p id="wordText">sun · 해</p></div>
-          </div>
-          <div class="chips" id="chips"></div>
-          <div class="grid3" style="margin-top:13px">
-            <button class="btn orange" id="chantBtn">🎵 챈트</button>
-            <button class="btn sky" id="wordBtn">🔊 단어</button>
-            <button class="btn pink" id="sentenceBtn">🔊 문장</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="reward">
-        <div><strong>오늘 별 모으기</strong><p>5개 미션 완료 시 오늘 학습 완료</p></div>
-        <div class="stars" id="todayStars">☆☆☆☆☆</div>
-      </div>
-
-      <div class="section-title">🧩 오늘 미션</div>
-      <div class="mission-list" id="missionList"></div>
-
-      <div class="section-title">🎙 따라 말하기 / 녹음</div>
-      <div class="card">
-        <div>목표 단어: <strong id="targetWord">sun</strong></div>
-        <div class="grid2" style="margin-top:12px">
-          <button class="btn dark" id="speechBtn">🎤 인식 시작</button>
-          <button class="btn green" id="recordBtn">⏺ 녹음</button>
-        </div>
-        <div class="grid2" style="margin-top:8px">
-          <button class="btn light" id="playRecordBtn">▶️ 내 목소리</button>
-          <button class="btn yellow" id="repeatTargetBtn">🔁 목표 듣기</button>
-        </div>
-        <div class="result" id="speechResult">마이크 권한을 허용해야 합니다. Safari는 음성 인식이 제한될 수 있습니다.</div>
-      </div>
-
-      <div class="section-title">🎮 소리 찾기 게임</div>
-      <div class="card">
-        <p style="margin:0 0 12px;color:#475569;font-size:14px">소리를 듣고 같은 단어를 골라보세요.</p>
-        <button class="btn sky" style="width:100%;margin-bottom:12px" id="quizSoundBtn">🔊 문제 듣기</button>
-        <div class="choice-grid" id="choiceGrid"></div>
-        <div class="result" id="quizResult">정답을 고르면 별을 받을 수 있습니다.</div>
-      </div>
-
-      <div class="section-title">✏️ 따라 쓰기</div>
-      <div class="card">
-        <div class="trace-wrap">
-          <div class="trace-head"><span>손가락으로 큰 글자를 따라 써보세요</span><span class="trace-letter" id="traceLetter">s</span></div>
-          <canvas id="traceCanvas"></canvas>
-        </div>
-        <div class="grid3" style="margin-top:10px">
-          <button class="btn light" id="clearCanvasBtn">지우기</button>
-          <button class="btn sky" id="guideBtn">가이드 숨기기</button>
-          <button class="btn green" id="writingDoneBtn">쓰기 완료</button>
-        </div>
-      </div>
-
-      <div class="controls grid3">
-        <button class="btn light" id="prevBtn">‹ 이전</button>
-        <button class="btn dark" id="doneBtn">✓ 오늘 완료</button>
-        <button class="btn light" id="nextBtn">다음 ›</button>
-      </div>
-    </section>
-
-    <section id="weekPage" class="page">
-      <div class="phase-card"><small id="weekLabel">Week 1</small><h3 id="weekTitle">소리 친해지기</h3><p id="weekGoal">목표</p><p id="weekFocus">중점</p></div>
-      <div id="weekList"></div>
-    </section>
-
-    <section id="yearPage" class="page">
-      <div id="phaseList"></div>
-      <div class="notice"><strong>운영 기준</strong><br>하루 15~20분 기준입니다. 노래/챈트 → 듣기 → 말하기 → 게임 → 따라쓰기 순서로 진행합니다. 4~5세는 정답률보다 반복 노출과 기분 좋게 끝내는 것이 우선입니다.</div>
-    </section>
-
-    <section id="searchPage" class="page">
-      <div class="search-box"><span>🔎</span><input id="searchInput" placeholder="day, week, cat, sight word 검색" /></div>
-      <div class="scroll-list" id="searchList"></div>
-    </section>
-  </main>
-
-  <nav>
-    <div class="nav-grid">
-      <button class="nav-btn active" data-tab="today"><span>🏠</span>오늘</button>
-      <button class="nav-btn" data-tab="week"><span>📅</span>주간</button>
-      <button class="nav-btn" data-tab="year"><span>🔁</span>1년</button>
-      <button class="nav-btn" data-tab="search"><span>🔎</span>검색</button>
-    </div>
-  </nav>
+<header><div class="top"><div><p class="eyebrow">4~5세 전용 · 하루 15~20분</p><h1>1년 파닉스 놀이 앱</h1></div><div class="spark">✨</div></div><div class="summary"><div class="summary-card dark"><p>오늘</p><strong id="summaryDay">Day 1</strong></div><div class="summary-card"><p>주차</p><strong id="summaryWeek">1주차</strong></div><div class="summary-card"><p>별</p><strong id="summaryStars">0개</strong></div><div class="summary-card"><p>연속</p><strong id="summaryStreak">0일</strong></div></div></header>
+<main>
+<section id="todayPage" class="page active">
+<div class="hero"><div class="hero-head"><div class="hero-line"><div><div class="phase" id="phaseText">소리 친해지기</div><div class="hero-title" id="mainTitle">소리 놀이</div></div><div class="emoji" id="emoji">☀️</div></div><div class="hero-detail" id="heroDetail">s /s/ / sun</div></div><div class="hero-body"><div class="sound-box"><div><div style="font-size:13px;color:#64748b;font-weight:800">오늘의 소리</div><div class="sound-letter" id="letterText">s</div></div><div class="sound-right"><strong id="soundText">/s/</strong><p id="wordText">sun · 해</p></div></div><div class="chips" id="chips"></div><div class="grid3" style="margin-top:13px"><button class="btn orange" id="chantBtn">🎵 느린 챈트</button><button class="btn sky" id="wordBtn">🔊 단어</button><button class="btn pink" id="sentenceBtn">🔊 문장</button></div><div class="mini-note">챈트는 노래 음원이 아니라, 아이가 리듬으로 따라 말하도록 만든 짧은 반복 문장입니다.</div></div></div>
+<div class="reward"><div><strong>오늘 별 모으기</strong><p>5개 미션 완료 시 오늘 학습 완료</p></div><div class="stars" id="todayStars">☆☆☆☆☆</div></div>
+<div class="section-title">🧩 오늘 미션</div><div class="mission-list" id="missionList"></div>
+<div class="section-title">🎙 따라 말하기 / 녹음</div><div class="card"><div>목표 단어: <strong id="targetWord">sun</strong></div><div class="grid2" style="margin-top:12px"><button class="btn dark" id="speechBtn">🎤 말하기 인식</button><button class="btn green" id="recordBtn">⏺ 녹음 시작</button></div><div class="grid2" style="margin-top:8px"><button class="btn light" id="playRecordBtn">▶️ 내 목소리</button><button class="btn yellow" id="repeatTargetBtn">🔁 목표 듣기</button></div><div class="result" id="speechResult">녹음은 대부분의 Chrome/Android에서 동작합니다. iPhone Safari는 브라우저 정책 때문에 제한될 수 있습니다.</div></div>
+<div class="section-title">🎮 소리 찾기 게임</div><div class="card"><p style="margin:0 0 12px;color:#475569;font-size:14px">먼저 문제 듣기를 누른 뒤, 같은 단어를 골라보세요.</p><button class="btn sky" style="width:100%;margin-bottom:12px" id="quizSoundBtn">🔊 문제 듣기</button><div class="choice-grid" id="choiceGrid"></div><div class="result" id="quizResult">정답을 고르면 별을 받을 수 있습니다.</div></div>
+<div class="section-title">✏️ 따라 쓰기</div><div class="card"><div class="trace-wrap"><div class="trace-head"><span>손가락으로 큰 글자를 따라 써보세요</span><span class="trace-letter" id="traceLetter">s</span></div><canvas id="traceCanvas"></canvas></div><div class="grid3" style="margin-top:10px"><button class="btn light" id="clearCanvasBtn">지우기</button><button class="btn sky" id="guideBtn">가이드 숨기기</button><button class="btn green" id="writingDoneBtn">쓰기 완료</button></div></div>
+<div class="controls grid3"><button class="btn light" id="prevBtn">‹ 이전</button><button class="btn dark" id="doneBtn">✓ 오늘 완료</button><button class="btn light" id="nextBtn">다음 ›</button></div>
+</section>
+<section id="weekPage" class="page"><div class="phase-card"><small id="weekLabel">Week 1</small><h3 id="weekTitle">소리 친해지기</h3><p id="weekGoal">목표</p><p id="weekFocus">중점</p></div><div id="weekList"></div></section>
+<section id="yearPage" class="page"><div id="phaseList"></div><div class="notice"><strong>운영 기준</strong><br>하루 15~20분 기준입니다. 느린 챈트 → 듣기 → 말하기/녹음 → 게임 → 따라쓰기 순서로 진행합니다. 4~5세는 정답률보다 반복 노출과 기분 좋게 끝내는 것이 우선입니다.</div></section>
+<section id="searchPage" class="page"><div class="search-box"><span>🔎</span><input id="searchInput" placeholder="day, week, cat, sight word 검색" /></div><div class="scroll-list" id="searchList"></div></section>
+</main>
+<nav><div class="nav-grid"><button class="nav-btn active" data-tab="today"><span>🏠</span>오늘</button><button class="nav-btn" data-tab="week"><span>📅</span>주간</button><button class="nav-btn" data-tab="year"><span>🔁</span>1년</button><button class="nav-btn" data-tab="search"><span>🔎</span>검색</button></div></nav>
 </div>
-
 <script>
-const LETTERS=[
-{l:"s",sound:"s",word:"sun",ko:"해",emoji:"☀️",chant:"s s s, sunny sun, say s and have some fun"},
-{l:"a",sound:"a",word:"apple",ko:"사과",emoji:"🍎",chant:"a a a, apple red, tap the sound inside your head"},
-{l:"t",sound:"t",word:"tap",ko:"톡톡",emoji:"🚰",chant:"t t t, tap tap tap, clap your hands and take a nap"},
-{l:"p",sound:"p",word:"pig",ko:"돼지",emoji:"🐷",chant:"p p p, pink pig play, pop pop pop and smile today"},
-{l:"i",sound:"i",word:"igloo",ko:"이글루",emoji:"🏠",chant:"i i i, igloo ice, say it once and say it twice"},
-{l:"n",sound:"n",word:"net",ko:"그물",emoji:"🕸️",chant:"n n n, net net net, catch the sound and don't forget"},
-{l:"m",sound:"m",word:"map",ko:"지도",emoji:"🗺️",chant:"m m m, map map map, find the sound and give a clap"},
-{l:"d",sound:"d",word:"dog",ko:"강아지",emoji:"🐶",chant:"d d d, dog dog dog, dance around and hop like frog"},
-{l:"g",sound:"g",word:"goat",ko:"염소",emoji:"🐐",chant:"g g g, goat can go, say the sound nice and slow"},
-{l:"o",sound:"o",word:"octopus",ko:"문어",emoji:"🐙",chant:"o o o, octopus, wave your arms and sing with us"},
-{l:"c",sound:"k",word:"cat",ko:"고양이",emoji:"🐱",chant:"c c c, cat cat cat, curl your hands and wear a hat"},
-{l:"k",sound:"k",word:"kite",ko:"연",emoji:"🪁",chant:"k k k, kite flies high, say the sound up in the sky"},
-{l:"e",sound:"e",word:"egg",ko:"달걀",emoji:"🥚",chant:"e e e, egg egg egg, tiny sound on tiny leg"},
-{l:"u",sound:"u",word:"umbrella",ko:"우산",emoji:"☂️",chant:"u u u, umbrella up, listen close and fill your cup"},
-{l:"r",sound:"r",word:"rabbit",ko:"토끼",emoji:"🐰",chant:"r r r, rabbit run, read the sound and have some fun"},
-{l:"h",sound:"h",word:"hat",ko:"모자",emoji:"🎩",chant:"h h h, hat hat hat, happy sound for little cat"},
-{l:"b",sound:"b",word:"bat",ko:"박쥐",emoji:"🦇",chant:"b b b, bat bat bat, bounce the sound and pat pat pat"},
-{l:"f",sound:"f",word:"fish",ko:"물고기",emoji:"🐟",chant:"f f f, fish fish fish, make a sound and make a wish"},
-{l:"l",sound:"l",word:"lion",ko:"사자",emoji:"🦁",chant:"l l l, lion loud, say the sound and feel so proud"},
-{l:"j",sound:"j",word:"jam",ko:"잼",emoji:"🍓",chant:"j j j, jam jam jam, jump the sound as best you can"},
-{l:"v",sound:"v",word:"van",ko:"밴",emoji:"🚐",chant:"v v v, van can move, say the sound and find the groove"},
-{l:"w",sound:"w",word:"web",ko:"거미줄",emoji:"🕸️",chant:"w w w, web web web, wiggle sound inside your head"},
-{l:"x",sound:"x",word:"box",ko:"상자",emoji:"📦",chant:"x x x, fox in box, tap the sound like ticking clocks"},
-{l:"y",sound:"y",word:"yo-yo",ko:"요요",emoji:"🪀",chant:"y y y, yo yo yo, say the sound and let it go"},
-{l:"z",sound:"z",word:"zip",ko:"지퍼",emoji:"🤐",chant:"z z z, zip zip zip, buzz the sound on your lip"},
-{l:"q",sound:"qu",word:"queen",ko:"여왕",emoji:"👑",chant:"qu qu qu, queen queen queen, quiet sound and royal scene"}
-];
+const LETTERS=[{l:"s",sound:"s",word:"sun",ko:"해",emoji:"☀️",chant:["s","s","s","sun","sun","sun","s sound","sun"]},{l:"a",sound:"a",word:"apple",ko:"사과",emoji:"🍎",chant:["a","a","a","apple","apple","apple","a sound","apple"]},{l:"t",sound:"t",word:"tap",ko:"톡톡",emoji:"🚰",chant:["t","t","t","tap","tap","tap","t sound","tap"]},{l:"p",sound:"p",word:"pig",ko:"돼지",emoji:"🐷",chant:["p","p","p","pig","pig","pig","p sound","pig"]},{l:"i",sound:"i",word:"igloo",ko:"이글루",emoji:"🏠",chant:["i","i","i","igloo","igloo","igloo","i sound","igloo"]},{l:"n",sound:"n",word:"net",ko:"그물",emoji:"🕸️",chant:["n","n","n","net","net","net","n sound","net"]},{l:"m",sound:"m",word:"map",ko:"지도",emoji:"🗺️",chant:["m","m","m","map","map","map","m sound","map"]},{l:"d",sound:"d",word:"dog",ko:"강아지",emoji:"🐶",chant:["d","d","d","dog","dog","dog","d sound","dog"]},{l:"g",sound:"g",word:"goat",ko:"염소",emoji:"🐐",chant:["g","g","g","goat","goat","goat","g sound","goat"]},{l:"o",sound:"o",word:"octopus",ko:"문어",emoji:"🐙",chant:["o","o","o","octopus","octopus","octopus","o sound","octopus"]},{l:"c",sound:"k",word:"cat",ko:"고양이",emoji:"🐱",chant:["c","c","c","cat","cat","cat","k sound","cat"]},{l:"k",sound:"k",word:"kite",ko:"연",emoji:"🪁",chant:["k","k","k","kite","kite","kite","k sound","kite"]},{l:"e",sound:"e",word:"egg",ko:"달걀",emoji:"🥚",chant:["e","e","e","egg","egg","egg","e sound","egg"]},{l:"u",sound:"u",word:"umbrella",ko:"우산",emoji:"☂️",chant:["u","u","u","umbrella","umbrella","umbrella","u sound","umbrella"]},{l:"r",sound:"r",word:"rabbit",ko:"토끼",emoji:"🐰",chant:["r","r","r","rabbit","rabbit","rabbit","r sound","rabbit"]},{l:"h",sound:"h",word:"hat",ko:"모자",emoji:"🎩",chant:["h","h","h","hat","hat","hat","h sound","hat"]},{l:"b",sound:"b",word:"bat",ko:"박쥐",emoji:"🦇",chant:["b","b","b","bat","bat","bat","b sound","bat"]},{l:"f",sound:"f",word:"fish",ko:"물고기",emoji:"🐟",chant:["f","f","f","fish","fish","fish","f sound","fish"]},{l:"l",sound:"l",word:"lion",ko:"사자",emoji:"🦁",chant:["l","l","l","lion","lion","lion","l sound","lion"]},{l:"j",sound:"j",word:"jam",ko:"잼",emoji:"🍓",chant:["j","j","j","jam","jam","jam","j sound","jam"]},{l:"v",sound:"v",word:"van",ko:"밴",emoji:"🚐",chant:["v","v","v","van","van","van","v sound","van"]},{l:"w",sound:"w",word:"web",ko:"거미줄",emoji:"🕸️",chant:["w","w","w","web","web","web","w sound","web"]},{l:"x",sound:"x",word:"box",ko:"상자",emoji:"📦",chant:["x","x","x","box","box","box","x sound","box"]},{l:"y",sound:"y",word:"yo-yo",ko:"요요",emoji:"🪀",chant:["y","y","y","yo yo","yo yo","yo yo","y sound","yo yo"]},{l:"z",sound:"z",word:"zip",ko:"지퍼",emoji:"🤐",chant:["z","z","z","zip","zip","zip","z sound","zip"]},{l:"q",sound:"qu",word:"queen",ko:"여왕",emoji:"👑",chant:["qu","qu","qu","queen","queen","queen","qu sound","queen"]}];
 const WORD_FAMILIES={at:["cat","bat","hat","mat","sat"],an:["can","pan","fan","man","van"],ap:["cap","map","tap","nap","lap"],in:["pin","tin","fin","win","bin"],it:["sit","pit","fit","hit","kit"],ip:["lip","sip","zip","tip","rip"],ot:["hot","pot","dot","cot","lot"],op:["hop","top","pop","mop","cop"],og:["dog","log","fog","hog"],ug:["bug","mug","rug","hug"],un:["sun","run","fun","bun"],et:["pet","net","jet","wet"]};
 const SIGHT_WORDS=["I","a","the","my","see","go","to","we","me","like","is","it","can","you","and","up","in","on","look","here"];
-const PHASES=[
-{weeks:[1,4],title:"소리 친해지기",goal:"알파벳 이름보다 소리 인식",focus:"챈트·입모양·듣기"},
-{weeks:[5,12],title:"기본 자음·단모음",goal:"문자와 대표 소리 연결",focus:"하루 1개 소리 반복"},
-{weeks:[13,24],title:"CVC 블렌딩",goal:"cat, map, pin 형태 읽기",focus:"소리 붙여 읽기"},
-{weeks:[25,36],title:"Word Family",goal:"at/an/ap 등 패턴 읽기",focus:"비슷한 단어 묶음"},
-{weeks:[37,44],title:"Sight Word 병행",goal:"the, I, see 등 자주 보는 단어",focus:"짧은 문장 읽기"},
-{weeks:[45,52],title:"리딩 루틴",goal:"짧은 문장과 그림책 연결",focus:"자신감·반복·놀이"}
-];
-let currentDay=Number(localStorage.getItem("phonics_current_day")||1);
-let completed=JSON.parse(localStorage.getItem("phonics_completed")||"{}");
-let missions=JSON.parse(localStorage.getItem("phonics_missions")||"{}");
-let stars=Number(localStorage.getItem("phonics_stars")||0);
-let streak=Number(localStorage.getItem("phonics_streak")||0);
-let lastDoneDate=localStorage.getItem("phonics_last_done")||"";
-let mediaRecorder=null,recordedChunks=[],recordedUrl="",canvas,ctx,drawing=false,guideVisible=true;
-const $=id=>document.getElementById(id);
-function getPhase(week){return PHASES.find(p=>week>=p.weeks[0]&&week<=p.weeks[1])||PHASES[0]}
-function todayKey(){return new Date().toISOString().slice(0,10)}
-function getPlan(day){
- const week=Math.ceil(day/7),dayInWeek=((day-1)%7)+1,phase=getPhase(week),letter=LETTERS[(week+dayInWeek-2)%LETTERS.length];
- const families=Object.keys(WORD_FAMILIES),familyKey=families[(week+dayInWeek-1)%families.length],sight=SIGHT_WORDS[(week+dayInWeek-2)%SIGHT_WORDS.length];
- let main="소리 놀이",detail=`${letter.l} /${letter.sound}/ / ${letter.word}`,mini=[letter.word,letter.l];
- if(week>=13&&week<=24){main="CVC 블렌딩";detail=`${familyKey} 패턴: ${WORD_FAMILIES[familyKey].slice(0,3).join(", ")}`;mini=WORD_FAMILIES[familyKey].slice(0,4)}
- if(week>=25&&week<=36){main="Word Family";detail=`${familyKey} family 단어 찾기`;mini=WORD_FAMILIES[familyKey]}
- if(week>=37){main="짧은 문장";detail=`Sight word: ${sight} / I see a ${letter.word}.`;mini=[sight,"I","see","a",letter.word]}
- if(dayInWeek===6){main="주간 복습";detail="이번 주 소리와 단어를 다시 보기"}
- if(dayInWeek===7){main="놀이 학습";detail="챈트, 그림 찾기, 따라쓰기 중 선택"}
- return{day,week,dayInWeek,phase,letter,familyKey,sight,main,detail,mini};
-}
+const PHASES=[{weeks:[1,4],title:"소리 친해지기",goal:"알파벳 이름보다 소리 인식",focus:"느린 챈트·입모양·듣기"},{weeks:[5,12],title:"기본 자음·단모음",goal:"문자와 대표 소리 연결",focus:"하루 1개 소리 반복"},{weeks:[13,24],title:"CVC 블렌딩",goal:"cat, map, pin 형태 읽기",focus:"소리 붙여 읽기"},{weeks:[25,36],title:"Word Family",goal:"at/an/ap 등 패턴 읽기",focus:"비슷한 단어 묶음"},{weeks:[37,44],title:"Sight Word 병행",goal:"the, I, see 등 자주 보는 단어",focus:"짧은 문장 읽기"},{weeks:[45,52],title:"리딩 루틴",goal:"짧은 문장과 그림책 연결",focus:"자신감·반복·놀이"}];
+let currentDay=Number(localStorage.getItem("phonics_current_day")||1),completed=JSON.parse(localStorage.getItem("phonics_completed")||"{}"),missions=JSON.parse(localStorage.getItem("phonics_missions")||"{}"),stars=Number(localStorage.getItem("phonics_stars")||0),streak=Number(localStorage.getItem("phonics_streak")||0),lastDoneDate=localStorage.getItem("phonics_last_done")||"",mediaRecorder=null,recordedChunks=[],recordedUrl="",audioPlayer=null,canvas,ctx,drawing=false,guideVisible=true,quizChoices=[];
+const $=id=>document.getElementById(id);function getPhase(w){return PHASES.find(p=>w>=p.weeks[0]&&w<=p.weeks[1])||PHASES[0]}function todayKey(){return new Date().toISOString().slice(0,10)}
+function getPlan(day){const week=Math.ceil(day/7),dayInWeek=((day-1)%7)+1,phase=getPhase(week),letter=LETTERS[(week+dayInWeek-2)%LETTERS.length],families=Object.keys(WORD_FAMILIES),familyKey=families[(week+dayInWeek-1)%families.length],sight=SIGHT_WORDS[(week+dayInWeek-2)%SIGHT_WORDS.length];let main="소리 놀이",detail=`${letter.l} /${letter.sound}/ / ${letter.word}`,mini=[letter.word,letter.l];if(week>=13&&week<=24){main="CVC 블렌딩";detail=`${familyKey} 패턴: ${WORD_FAMILIES[familyKey].slice(0,3).join(", ")}`;mini=WORD_FAMILIES[familyKey].slice(0,4)}if(week>=25&&week<=36){main="Word Family";detail=`${familyKey} family 단어 찾기`;mini=WORD_FAMILIES[familyKey]}if(week>=37){main="짧은 문장";detail=`Sight word: ${sight} / I see a ${letter.word}.`;mini=[sight,"I","see","a",letter.word]}if(dayInWeek===6){main="주간 복습";detail="이번 주 소리와 단어를 다시 보기"}if(dayInWeek===7){main="놀이 학습";detail="챈트, 그림 찾기, 따라쓰기 중 선택"}return{day,week,dayInWeek,phase,letter,familyKey,sight,main,detail,mini}}
 function save(){localStorage.setItem("phonics_current_day",currentDay);localStorage.setItem("phonics_completed",JSON.stringify(completed));localStorage.setItem("phonics_missions",JSON.stringify(missions));localStorage.setItem("phonics_stars",stars);localStorage.setItem("phonics_streak",streak);localStorage.setItem("phonics_last_done",lastDoneDate)}
-function speak(text,rate=.78,pitch=1.1){if(!window.speechSynthesis){alert("이 브라우저는 음성 재생을 지원하지 않습니다.");return}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang="en-US";u.rate=rate;u.pitch=pitch;speechSynthesis.speak(u)}
-function markMission(key){const dk="d"+currentDay;if(!missions[dk])missions[dk]={};if(!missions[dk][key]){missions[dk][key]=true;stars++;}save();render()}
-function dayMissionCount(){const m=missions["d"+currentDay]||{};return Object.values(m).filter(Boolean).length}
-function render(){const p=getPlan(currentDay),m=missions["d"+currentDay]||{};$("summaryDay").textContent=`Day ${currentDay}`;$("summaryWeek").textContent=`${p.week}주차`;$("summaryStars").textContent=`${stars}개`;$("summaryStreak").textContent=`${streak}일`;$("phaseText").textContent=p.phase.title;$("mainTitle").textContent=p.main;$("emoji").textContent=p.letter.emoji;$("heroDetail").textContent=p.detail;$("letterText").textContent=p.letter.l;$("soundText").textContent=`/${p.letter.sound}/`;$("wordText").textContent=`${p.letter.word} · ${p.letter.ko}`;$("targetWord").textContent=p.letter.word;$("traceLetter").textContent=p.letter.l;$("chips").innerHTML=p.mini.map(x=>`<span class="chip" onclick="speak('${x}')">${x}</span>`).join("");$("todayStars").textContent="★".repeat(dayMissionCount())+"☆".repeat(Math.max(0,5-dayMissionCount()));
- const list=[['chant','🎵','챈트 듣기','오늘의 소리 챈트를 듣고 따라합니다.'],['word','🔊','단어 듣기','오늘의 단어를 3번 듣고 따라합니다.'],['speak','🎙','따라 말하기','인식 또는 녹음으로 아이 목소리를 확인합니다.'],['quiz','🎮','소리 찾기','소리를 듣고 맞는 그림/단어를 고릅니다.'],['write','✏️','따라 쓰기','큰 글자를 손가락으로 따라 씁니다.']];
- $("missionList").innerHTML=list.map(([key,icon,title,desc])=>`<div class="mission ${m[key]?'done':''}"><div class="mission-icon">${icon}</div><div class="mission-text"><strong>${title}</strong><p>${desc}</p></div><div class="mission-check">${m[key]?'✓':''}</div></div>`).join("");
- $("doneBtn").textContent=completed[currentDay]?"✓ 완료됨":"✓ 오늘 완료";$("prevBtn").disabled=currentDay<=1;$("nextBtn").disabled=currentDay>=365;renderQuiz();renderWeek();renderSearch();drawGuide();save();}
-function renderQuiz(){const p=getPlan(currentDay);let opts=[p.letter];while(opts.length<4){const pick=LETTERS[Math.floor(Math.random()*LETTERS.length)];if(!opts.find(x=>x.word===pick.word))opts.push(pick)}opts.sort(()=>Math.random()-.5);$("choiceGrid").innerHTML=opts.map(o=>`<button class="choice" data-word="${o.word}"><span class="big">${o.emoji}</span>${o.word}</button>`).join("");document.querySelectorAll('.choice').forEach(btn=>btn.onclick=()=>{const ok=btn.dataset.word===p.letter.word;document.querySelectorAll('.choice').forEach(b=>b.classList.remove('correct','wrong'));btn.classList.add(ok?'correct':'wrong');$("quizResult").innerHTML=ok?"정답입니다. 별 1개 획득!":"다시 들어보고 골라보세요.";if(ok)markMission('quiz')});}
-function renderWeek(){const p=getPlan(currentDay);$("weekLabel").textContent=`Week ${p.week}`;$("weekTitle").textContent=p.phase.title;$("weekGoal").textContent=`목표: ${p.phase.goal}`;$("weekFocus").textContent=`중점: ${p.phase.focus}`;let html="";for(let i=(p.week-1)*7+1;i<=Math.min(p.week*7,365);i++){const d=getPlan(i);html+=`<button class="week-card ${i===currentDay?'active':''}" onclick="goDay(${i});openTab('today')"><strong>Day ${i} · ${d.main} ${completed[i]?'✓':''}</strong><p>${d.detail}</p></button>`}$("weekList").innerHTML=html;}
-function renderYear(){$("phaseList").innerHTML=PHASES.map((p,i)=>`<div class="phase-card"><small>${p.weeks[0]}~${p.weeks[1]}주차</small><h3>${i+1}. ${p.title}</h3><p>목표: ${p.goal}</p><p>중점: ${p.focus}</p></div>`).join("")}
-function renderSearch(){const q=($("searchInput")?.value||"").toLowerCase();let html="";for(let i=1;i<=365;i++){const d=getPlan(i);if(`${i} ${d.week} ${d.main} ${d.detail} ${d.phase.title}`.toLowerCase().includes(q)){html+=`<button class="week-card" onclick="goDay(${i});openTab('today')"><strong>Day ${i} · Week ${d.week} ${d.letter.emoji}</strong><p>${d.main} · ${d.detail}</p></button>`}}$("searchList").innerHTML=html||"<div class='notice'>검색 결과가 없습니다.</div>";}
-function goDay(d){currentDay=Math.max(1,Math.min(365,d));$("speechResult").textContent="마이크 권한을 허용해야 합니다. Safari는 음성 인식이 제한될 수 있습니다.";clearCanvas();render();window.scrollTo({top:0,behavior:'smooth'})}
-function openTab(tab){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));$(`${tab}Page`).classList.add('active');document.querySelector(`[data-tab='${tab}']`).classList.add('active');if(tab==='year')renderYear();if(tab==='search')renderSearch();resizeCanvas();}
-const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;
-function startSpeech(){const p=getPlan(currentDay),target=p.letter.word.toLowerCase();if(!SpeechRecognition){$("speechResult").innerHTML="이 브라우저는 음성 인식을 지원하지 않습니다. Chrome 모바일에서 시도해보세요. 그래도 녹음 기능은 사용 가능합니다.";return}const rec=new SpeechRecognition();rec.lang="en-US";rec.interimResults=false;rec.maxAlternatives=3;$("speechResult").innerHTML="듣는 중입니다. 목표 단어를 말해보세요.";rec.onresult=e=>{const heard=Array.from(e.results[0]).map(x=>x.transcript.toLowerCase().trim());const ok=heard.some(h=>h.includes(target));$("speechResult").innerHTML=`인식 결과: <b>${heard.join(", ")}</b><br>${ok?"좋습니다. 목표 단어와 유사하게 인식됐습니다. 별 1개 획득!":"목표 단어와 다르게 인식됐습니다. 다시 천천히 말해보세요."}`;if(ok)markMission('speak')};rec.onerror=()=>{$("speechResult").innerHTML="음성 인식이 중단됐습니다. 마이크 권한 또는 브라우저 지원 여부를 확인하세요."};rec.start();}
-async function toggleRecord(){if(mediaRecorder&&mediaRecorder.state==='recording'){mediaRecorder.stop();$("recordBtn").textContent="⏺ 녹음";return}try{const stream=await navigator.mediaDevices.getUserMedia({audio:true});recordedChunks=[];mediaRecorder=new MediaRecorder(stream);mediaRecorder.ondataavailable=e=>recordedChunks.push(e.data);mediaRecorder.onstop=()=>{const blob=new Blob(recordedChunks,{type:'audio/webm'});recordedUrl=URL.createObjectURL(blob);$("speechResult").innerHTML="녹음 완료. 내 목소리 버튼으로 다시 들을 수 있습니다. 별 1개 획득!";stream.getTracks().forEach(t=>t.stop());markMission('speak')};mediaRecorder.start();$("recordBtn").textContent="⏹ 정지";$("speechResult").innerHTML="녹음 중입니다. 목표 단어를 말하고 정지를 누르세요."}catch(e){$("speechResult").innerHTML="마이크 접근이 차단됐습니다. 브라우저 권한을 허용하세요."}}
-function playRecord(){if(!recordedUrl){$("speechResult").innerHTML="아직 녹음된 목소리가 없습니다.";return}new Audio(recordedUrl).play()}
-function resizeCanvas(){canvas=$("traceCanvas");if(!canvas)return;const ratio=window.devicePixelRatio||1;const rect=canvas.getBoundingClientRect();canvas.width=rect.width*ratio;canvas.height=230*ratio;ctx=canvas.getContext('2d');ctx.setTransform(ratio,0,0,ratio,0,0);ctx.lineWidth=9;ctx.lineCap='round';ctx.lineJoin='round';ctx.strokeStyle='#0f172a';drawGuide();}
-function drawGuide(){if(!ctx)return;ctx.clearRect(0,0,canvas.clientWidth,230);if(!guideVisible)return;const p=getPlan(currentDay);ctx.save();ctx.globalAlpha=.16;ctx.fillStyle='#0f172a';ctx.font='160px -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(p.letter.l,canvas.clientWidth/2,118);ctx.restore();}
-function clearCanvas(){if(ctx)drawGuide()}
-function pos(e){const r=canvas.getBoundingClientRect();const t=e.touches?e.touches[0]:e;return{x:t.clientX-r.left,y:t.clientY-r.top}}
-function startDraw(e){e.preventDefault();drawing=true;const p=pos(e);ctx.beginPath();ctx.moveTo(p.x,p.y)}
-function moveDraw(e){if(!drawing)return;e.preventDefault();const p=pos(e);ctx.lineTo(p.x,p.y);ctx.stroke()}
-function endDraw(){drawing=false}
-function completeToday(){completed[currentDay]=true;if(lastDoneDate!==todayKey()){streak+=1;lastDoneDate=todayKey();stars+=2}save();render();alert('오늘 학습 완료! 별 2개 추가!')}
-function init(){resizeCanvas();['mousedown','touchstart'].forEach(ev=>canvas.addEventListener(ev,startDraw,{passive:false}));['mousemove','touchmove'].forEach(ev=>canvas.addEventListener(ev,moveDraw,{passive:false}));['mouseup','mouseleave','touchend','touchcancel'].forEach(ev=>canvas.addEventListener(ev,endDraw));window.addEventListener('resize',resizeCanvas);document.querySelectorAll('.nav-btn').forEach(b=>b.onclick=()=>openTab(b.dataset.tab));$("chantBtn").onclick=()=>{const p=getPlan(currentDay);speak(p.letter.chant,.82,1.18);markMission('chant')};$("wordBtn").onclick=()=>{speak(getPlan(currentDay).letter.word,.72);markMission('word')};$("sentenceBtn").onclick=()=>speak(`I see a ${getPlan(currentDay).letter.word}`,.78);$("quizSoundBtn").onclick=()=>speak(getPlan(currentDay).letter.word,.72);$("repeatTargetBtn").onclick=()=>speak(getPlan(currentDay).letter.word,.72);$("speechBtn").onclick=startSpeech;$("recordBtn").onclick=toggleRecord;$("playRecordBtn").onclick=playRecord;$("clearCanvasBtn").onclick=clearCanvas;$("guideBtn").onclick=()=>{guideVisible=!guideVisible;$("guideBtn").textContent=guideVisible?'가이드 숨기기':'가이드 보기';drawGuide()};$("writingDoneBtn").onclick=()=>{markMission('write');$("writingDoneBtn").textContent='쓰기 완료 ✓'};$("prevBtn").onclick=()=>goDay(currentDay-1);$("nextBtn").onclick=()=>goDay(currentDay+1);$("doneBtn").onclick=completeToday;$("searchInput").oninput=renderSearch;renderYear();render();}
+function speak(text,rate=.68,pitch=1.08){if(!window.speechSynthesis){alert("이 브라우저는 음성 재생을 지원하지 않습니다.");return}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang="en-US";u.rate=rate;u.pitch=pitch;speechSynthesis.speak(u)}
+function slowChant(parts,index=0){if(index===0)speechSynthesis.cancel();if(index>=parts.length){markMission('chant');return}const u=new SpeechSynthesisUtterance(parts[index]);u.lang="en-US";u.rate=.48;u.pitch=1.16;u.onend=()=>setTimeout(()=>slowChant(parts,index+1),420);speechSynthesis.speak(u)}
+function markMission(key){const dk="d"+currentDay;if(!missions[dk])missions[dk]={};if(!missions[dk][key]){missions[dk][key]=true;stars++}save();render(false)}function dayMissionCount(){const m=missions["d"+currentDay]||{};return Object.values(m).filter(Boolean).length}
+function makeQuizChoices(){const p=getPlan(currentDay);quizChoices=[p.letter];let offset=1;while(quizChoices.length<4){const pick=LETTERS[(LETTERS.indexOf(p.letter)+offset*5)%LETTERS.length];if(!quizChoices.find(x=>x.word===pick.word))quizChoices.push(pick);offset++}quizChoices.sort(()=>Math.random()-.5)}
+function render(refreshQuiz=true){const p=getPlan(currentDay),m=missions["d"+currentDay]||{};$("summaryDay").textContent=`Day ${currentDay}`;$("summaryWeek").textContent=`${p.week}주차`;$("summaryStars").textContent=`${stars}개`;$("summaryStreak").textContent=`${streak}일`;$("phaseText").textContent=p.phase.title;$("mainTitle").textContent=p.main;$("emoji").textContent=p.letter.emoji;$("heroDetail").textContent=p.detail;$("letterText").textContent=p.letter.l;$("soundText").textContent=`/${p.letter.sound}/`;$("wordText").textContent=`${p.letter.word} · ${p.letter.ko}`;$("targetWord").textContent=p.letter.word;$("traceLetter").textContent=p.letter.l;$("chips").innerHTML=p.mini.map(x=>`<span class="chip" onclick="speak('${x}',.6)">${x}</span>`).join("");$("todayStars").textContent="★".repeat(dayMissionCount())+"☆".repeat(Math.max(0,5-dayMissionCount()));const list=[['chant','🎵','느린 챈트 듣기','천천히 나오는 소리와 단어를 리듬처럼 따라합니다.'],['word','🔊','단어 듣기','오늘의 단어를 3번 듣고 따라합니다.'],['speak','🎙','따라 말하기','인식 또는 녹음으로 아이 목소리를 확인합니다.'],['quiz','🎮','소리 찾기','소리를 듣고 맞는 그림/단어를 고릅니다.'],['write','✏️','따라 쓰기','큰 글자를 손가락으로 따라 씁니다.']];$("missionList").innerHTML=list.map(([key,icon,title,desc])=>`<div class="mission ${m[key]?'done':''}"><div class="mission-icon">${icon}</div><div class="mission-text"><strong>${title}</strong><p>${desc}</p></div><div class="mission-check">${m[key]?'✓':''}</div></div>`).join("");$("doneBtn").textContent=completed[currentDay]?"✓ 완료됨":"✓ 오늘 완료";$("prevBtn").disabled=currentDay<=1;$("nextBtn").disabled=currentDay>=365;if(refreshQuiz)makeQuizChoices();renderQuiz();renderWeek();renderSearch();drawGuide();save()}
+function renderQuiz(){const p=getPlan(currentDay);$("choiceGrid").innerHTML=quizChoices.map(o=>`<button class="choice" data-word="${o.word}"><span class="big">${o.emoji}</span>${o.word}</button>`).join("");document.querySelectorAll('.choice').forEach(btn=>btn.onclick=()=>{const ok=btn.dataset.word===p.letter.word;document.querySelectorAll('.choice').forEach(b=>b.classList.remove('correct','wrong'));btn.classList.add(ok?'correct':'wrong');$("quizResult").innerHTML=ok?"정답입니다. 별 1개 획득!":"아쉽습니다. 문제 듣기를 다시 누르고 천천히 골라보세요.";if(ok)markMission('quiz')})}
+function renderWeek(){const p=getPlan(currentDay);$("weekLabel").textContent=`Week ${p.week}`;$("weekTitle").textContent=p.phase.title;$("weekGoal").textContent=`목표: ${p.phase.goal}`;$("weekFocus").textContent=`중점: ${p.phase.focus}`;let html="";for(let i=(p.week-1)*7+1;i<=Math.min(p.week*7,365);i++){const d=getPlan(i);html+=`<button class="week-card ${i===currentDay?'active':''}" onclick="goDay(${i});openTab('today')"><strong>Day ${i} · ${d.main} ${completed[i]?'✓':''}</strong><p>${d.detail}</p></button>`}$("weekList").innerHTML=html}function renderYear(){$("phaseList").innerHTML=PHASES.map((p,i)=>`<div class="phase-card"><small>${p.weeks[0]}~${p.weeks[1]}주차</small><h3>${i+1}. ${p.title}</h3><p>목표: ${p.goal}</p><p>중점: ${p.focus}</p></div>`).join("")}function renderSearch(){const q=($("searchInput")?.value||"").toLowerCase();let html="";for(let i=1;i<=365;i++){const d=getPlan(i);if(`${i} ${d.week} ${d.main} ${d.detail} ${d.phase.title}`.toLowerCase().includes(q)){html+=`<button class="week-card" onclick="goDay(${i});openTab('today')"><strong>Day ${i} · Week ${d.week} ${d.letter.emoji}</strong><p>${d.main} · ${d.detail}</p></button>`}}$("searchList").innerHTML=html||"<div class='notice'>검색 결과가 없습니다.</div>"}
+function goDay(d){currentDay=Math.max(1,Math.min(365,d));$("speechResult").textContent="녹음은 대부분의 Chrome/Android에서 동작합니다. iPhone Safari는 브라우저 정책 때문에 제한될 수 있습니다.";recordedUrl="";clearCanvas();render(true);window.scrollTo({top:0,behavior:'smooth'})}function openTab(tab){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));$(`${tab}Page`).classList.add('active');document.querySelector(`[data-tab='${tab}']`).classList.add('active');if(tab==='year')renderYear();if(tab==='search')renderSearch();resizeCanvas()}
+const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;function startSpeech(){const p=getPlan(currentDay),target=p.letter.word.toLowerCase();if(!SpeechRecognition){$("speechResult").innerHTML="이 브라우저는 음성 인식을 지원하지 않습니다. Chrome 모바일에서 시도해보세요. 대신 녹음 기능으로 아이 목소리를 다시 들을 수 있습니다.";return}const rec=new SpeechRecognition();rec.lang="en-US";rec.interimResults=false;rec.maxAlternatives=3;$("speechResult").innerHTML="듣는 중입니다. 목표 단어를 말해보세요.";rec.onresult=e=>{const heard=Array.from(e.results[0]).map(x=>x.transcript.toLowerCase().trim());const ok=heard.some(h=>h.includes(target));$("speechResult").innerHTML=`인식 결과: <b>${heard.join(", ")}</b><br>${ok?"좋습니다. 목표 단어와 유사하게 인식됐습니다. 별 1개 획득!":"목표 단어와 다르게 인식됐습니다. 다시 천천히 말해보세요."}`;if(ok)markMission('speak')};rec.onerror=()=>{$("speechResult").innerHTML="음성 인식이 중단됐습니다. 마이크 권한 또는 브라우저 지원 여부를 확인하세요."};rec.start()}
+async function toggleRecord(){if(mediaRecorder&&mediaRecorder.state==='recording'){mediaRecorder.stop();$("recordBtn").textContent="⏺ 녹음 시작";return}try{if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){$("speechResult").innerHTML="이 브라우저는 녹음 기능을 지원하지 않습니다. Chrome 모바일에서 다시 시도하세요.";return}const stream=await navigator.mediaDevices.getUserMedia({audio:true});recordedChunks=[];mediaRecorder=new MediaRecorder(stream);mediaRecorder.ondataavailable=e=>{if(e.data&&e.data.size>0)recordedChunks.push(e.data)};mediaRecorder.onstop=()=>{const type=MediaRecorder.isTypeSupported('audio/webm')?'audio/webm':'audio/mp4';const blob=new Blob(recordedChunks,{type});if(recordedUrl)URL.revokeObjectURL(recordedUrl);recordedUrl=URL.createObjectURL(blob);$("speechResult").innerHTML="녹음 완료. 이제 ‘내 목소리’를 눌러 다시 들어보세요. 별 1개 획득!";stream.getTracks().forEach(t=>t.stop());markMission('speak')};mediaRecorder.start();$("recordBtn").textContent="⏹ 녹음 정지";$("speechResult").innerHTML="녹음 중입니다. 목표 단어를 말하고 정지를 누르세요."}catch(e){$("speechResult").innerHTML="마이크 접근이 차단됐습니다. 주소창의 권한 설정에서 마이크를 허용하세요."}}
+function playRecord(){if(!recordedUrl){$("speechResult").innerHTML="아직 녹음된 목소리가 없습니다. 먼저 녹음 시작 → 녹음 정지를 진행하세요.";return}if(audioPlayer){audioPlayer.pause();audioPlayer=null}audioPlayer=new Audio(recordedUrl);audioPlayer.play().catch(()=>{$("speechResult").innerHTML="녹음 재생이 차단됐습니다. 화면을 한 번 터치한 뒤 다시 눌러보세요."})}
+function resizeCanvas(){canvas=$("traceCanvas");if(!canvas)return;const ratio=window.devicePixelRatio||1,rect=canvas.getBoundingClientRect();canvas.width=rect.width*ratio;canvas.height=230*ratio;ctx=canvas.getContext('2d');ctx.setTransform(ratio,0,0,ratio,0,0);ctx.lineWidth=9;ctx.lineCap='round';ctx.lineJoin='round';ctx.strokeStyle='#0f172a';drawGuide()}function drawGuide(){if(!ctx)return;ctx.clearRect(0,0,canvas.clientWidth,230);if(!guideVisible)return;const p=getPlan(currentDay);ctx.save();ctx.globalAlpha=.16;ctx.fillStyle='#0f172a';ctx.font='160px -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(p.letter.l,canvas.clientWidth/2,118);ctx.restore()}function clearCanvas(){if(ctx)drawGuide()}function pos(e){const r=canvas.getBoundingClientRect(),t=e.touches?e.touches[0]:e;return{x:t.clientX-r.left,y:t.clientY-r.top}}function startDraw(e){e.preventDefault();drawing=true;const p=pos(e);ctx.beginPath();ctx.moveTo(p.x,p.y)}function moveDraw(e){if(!drawing)return;e.preventDefault();const p=pos(e);ctx.lineTo(p.x,p.y);ctx.stroke()}function endDraw(){drawing=false}
+function completeToday(){completed[currentDay]=true;if(lastDoneDate!==todayKey()){streak+=1;lastDoneDate=todayKey();stars+=2}save();render(false);alert('오늘 학습 완료! 별 2개 추가!')}
+function init(){resizeCanvas();['mousedown','touchstart'].forEach(ev=>canvas.addEventListener(ev,startDraw,{passive:false}));['mousemove','touchmove'].forEach(ev=>canvas.addEventListener(ev,moveDraw,{passive:false}));['mouseup','mouseleave','touchend','touchcancel'].forEach(ev=>canvas.addEventListener(ev,endDraw));window.addEventListener('resize',resizeCanvas);document.querySelectorAll('.nav-btn').forEach(b=>b.onclick=()=>openTab(b.dataset.tab));$("chantBtn").onclick=()=>slowChant(getPlan(currentDay).letter.chant);$("wordBtn").onclick=()=>{speak(getPlan(currentDay).letter.word,.62);markMission('word')};$("sentenceBtn").onclick=()=>speak(`I see a ${getPlan(currentDay).letter.word}`,.62);$("quizSoundBtn").onclick=()=>speak(getPlan(currentDay).letter.word,.58);$("repeatTargetBtn").onclick=()=>speak(getPlan(currentDay).letter.word,.58);$("speechBtn").onclick=startSpeech;$("recordBtn").onclick=toggleRecord;$("playRecordBtn").onclick=playRecord;$("clearCanvasBtn").onclick=clearCanvas;$("guideBtn").onclick=()=>{guideVisible=!guideVisible;$("guideBtn").textContent=guideVisible?'가이드 숨기기':'가이드 보기';drawGuide()};$("writingDoneBtn").onclick=()=>{markMission('write');$("writingDoneBtn").textContent='쓰기 완료 ✓'};$("prevBtn").onclick=()=>goDay(currentDay-1);$("nextBtn").onclick=()=>goDay(currentDay+1);$("doneBtn").onclick=completeToday;$("searchInput").oninput=renderSearch;renderYear();makeQuizChoices();render(true)}
 init();
 </script>
 </body>
