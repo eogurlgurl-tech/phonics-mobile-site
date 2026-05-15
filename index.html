@@ -1,6 +1,3 @@
-<!-- FILE: index.html -->
-<!-- VERSION: v4.2 STABLE_FULL_REPLACE -->
-<!-- PURPOSE: 4~5세 파닉스 모바일/아이패드 웹앱 / ABC 친숙화 / 파닉스 / 아이패드 가로모드 / 녹음 제거 / 안정화 -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -8,419 +5,84 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>4~5세 파닉스 1년 놀이 앱</title>
 <style>
-:root{--ink:#0f172a;--muted:#64748b;--line:#e2e8f0;--dark:#0f172a;--orange:#f97316;--sky:#0284c7;--pink:#db2777;--green:#059669;--card:#fff}
+:root{--ink:#0f172a;--muted:#64748b;--line:#e2e8f0;--dark:#0f172a;--orange:#f97316;--sky:#0284c7;--pink:#db2777;--green:#059669}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:linear-gradient(180deg,#fff7ed 0%,#fff 45%,#eff6ff 100%);color:var(--ink)}
 button,input{font-family:inherit}button{border:0;cursor:pointer}
 .app{width:100%;max-width:1180px;margin:0 auto;min-height:100vh;padding-bottom:104px}
 header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid #e5e7eb;padding:16px}
 .top{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.eyebrow{font-size:12px;color:#d97706;font-weight:950;margin:0}
-h1{font-size:22px;margin:3px 0 0;letter-spacing:-.5px}
+.eyebrow{font-size:12px;color:#d97706;font-weight:950;margin:0}h1{font-size:22px;margin:3px 0 0;letter-spacing:-.5px}
 .spark{width:50px;height:50px;border-radius:18px;background:#fef3c7;display:grid;place-items:center;font-size:28px}
 .summary{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
 .summary-card{background:white;border-radius:18px;padding:10px;box-shadow:0 7px 18px rgba(15,23,42,.06)}
-.summary-card.dark{background:var(--dark);color:white}
-.summary-card p{margin:0;color:var(--muted);font-size:10px;font-weight:900}
-.summary-card.dark p{color:#cbd5e1}
-.summary-card strong{display:block;font-size:15px;margin-top:4px;white-space:nowrap}
-main{padding:16px}.page{display:none}.page.active{display:block}
-.learn-layout{display:grid;grid-template-columns:1fr;gap:16px}.left-col,.right-col{min-width:0}
+.summary-card.dark{background:var(--dark);color:white}.summary-card p{margin:0;color:var(--muted);font-size:10px;font-weight:900}.summary-card.dark p{color:#cbd5e1}.summary-card strong{display:block;font-size:15px;margin-top:4px;white-space:nowrap}
+main{padding:16px}.page{display:none}.page.active{display:block}.learn-layout{display:grid;grid-template-columns:1fr;gap:16px}.left-col,.right-col{min-width:0}
 .hero{overflow:hidden;border-radius:30px;background:white;box-shadow:0 14px 34px rgba(15,23,42,.1)}
-.hero-head{padding:22px;background:linear-gradient(135deg,#fcd34d,#fed7aa)}
-.hero-line{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.phase{font-size:12px;color:#92400e;font-weight:950}
-.hero-title{font-size:28px;font-weight:950;letter-spacing:-.6px;margin-top:5px}
-.hero-detail{margin-top:11px;color:#7c2d12;font-size:14px;line-height:1.45;font-weight:800}
-.emoji{font-size:58px}.hero-body{padding:16px}
-.sound-box{display:flex;justify-content:space-between;align-items:center;background:#f8fafc;border-radius:24px;padding:17px}
-.sound-letter{font-size:54px;font-weight:950;line-height:1}
-.sound-right{text-align:right}.sound-right strong{font-size:22px}.sound-right p{margin:5px 0 0;color:var(--muted);font-size:13px}
+.hero-head{padding:22px;background:linear-gradient(135deg,#fcd34d,#fed7aa)}.hero-line{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.phase{font-size:12px;color:#92400e;font-weight:950}.hero-title{font-size:28px;font-weight:950;letter-spacing:-.6px;margin-top:5px}.hero-detail{margin-top:11px;color:#7c2d12;font-size:14px;line-height:1.45;font-weight:800}.emoji{font-size:58px}.hero-body{padding:16px}
+.sound-box{display:flex;justify-content:space-between;align-items:center;background:#f8fafc;border-radius:24px;padding:17px}.sound-letter{font-size:54px;font-weight:950;line-height:1}.sound-right{text-align:right}.sound-right strong{font-size:22px}.sound-right p{margin:5px 0 0;color:var(--muted);font-size:13px}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}.chip{background:#e0f2fe;color:#075985;border-radius:999px;padding:8px 12px;font-size:13px;font-weight:950}
-.section-title{margin:24px 0 10px;font-size:18px;font-weight:950}
-.card{background:var(--card);border-radius:25px;padding:16px;margin-bottom:12px;box-shadow:0 8px 20px rgba(15,23,42,.065)}
-.mission-list{display:grid;gap:10px}.mission{display:flex;align-items:flex-start;gap:12px;background:white;border-radius:24px;padding:14px;box-shadow:0 7px 18px rgba(15,23,42,.055)}
-.mission.done{background:#ecfdf5}.mission-icon{width:42px;height:42px;border-radius:16px;background:#f1f5f9;display:grid;place-items:center;font-size:22px;flex-shrink:0}
-.mission.done .mission-icon{background:#bbf7d0}.mission-text{flex:1}.mission-text strong{font-size:15px}.mission-text p{margin:5px 0 0;color:var(--muted);font-size:13px;line-height:1.45}.mission-check{font-size:22px;color:var(--green);font-weight:950}
+.section-title{margin:24px 0 10px;font-size:18px;font-weight:950}.card{background:white;border-radius:25px;padding:16px;margin-bottom:12px;box-shadow:0 8px 20px rgba(15,23,42,.065)}
+.mission-list{display:grid;gap:10px}.mission{display:flex;align-items:flex-start;gap:12px;background:white;border-radius:24px;padding:14px;box-shadow:0 7px 18px rgba(15,23,42,.055)}.mission.done{background:#ecfdf5}.mission-icon{width:42px;height:42px;border-radius:16px;background:#f1f5f9;display:grid;place-items:center;font-size:22px;flex-shrink:0}.mission.done .mission-icon{background:#bbf7d0}.mission-text{flex:1}.mission-text strong{font-size:15px}.mission-text p{margin:5px 0 0;color:var(--muted);font-size:13px;line-height:1.45}.mission-check{font-size:22px;color:var(--green);font-weight:950}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
-.btn{min-height:48px;border-radius:18px;font-weight:950;padding:10px;font-size:14px}
-.btn.dark{background:var(--dark);color:white}.btn.orange{background:var(--orange);color:white}.btn.sky{background:var(--sky);color:white}.btn.pink{background:var(--pink);color:white}.btn.green{background:var(--green);color:white}.btn.light{background:white;color:var(--ink);border:1px solid var(--line)}.btn.yellow{background:#fef3c7;color:#92400e}.btn:disabled{opacity:.45}
+.btn{min-height:48px;border-radius:18px;font-weight:950;padding:10px;font-size:14px}.btn.dark{background:var(--dark);color:white}.btn.orange{background:var(--orange);color:white}.btn.sky{background:var(--sky);color:white}.btn.pink{background:var(--pink);color:white}.btn.green{background:var(--green);color:white}.btn.light{background:white;color:var(--ink);border:1px solid var(--line)}.btn.yellow{background:#fef3c7;color:#92400e}.btn:disabled{opacity:.45}
 .result{margin-top:12px;background:#f8fafc;border-radius:18px;padding:12px;font-size:13px;line-height:1.5;color:#475569}
-.reward{display:flex;align-items:center;justify-content:space-between;gap:12px;background:linear-gradient(135deg,#fef3c7,#fce7f3);border-radius:26px;padding:16px;margin-top:14px}
-.stars{font-size:26px;letter-spacing:2px}.reward p{margin:4px 0 0;color:#7c2d12;font-size:13px;font-weight:800}
-.trace-wrap{border-radius:24px;border:2px dashed #cbd5e1;overflow:hidden;background:white}.trace-head{display:flex;justify-content:space-between;align-items:center;background:#f8fafc;padding:10px 12px;font-size:13px;color:#475569}.trace-letter{font-weight:950;color:var(--ink);font-size:18px}
-canvas{display:block;width:100%;height:230px;touch-action:none;background:linear-gradient(#fff,#fff),repeating-linear-gradient(0deg,transparent 0 56px,#e5e7eb 57px 58px)}
-.choice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.choice{background:#f8fafc;border:2px solid transparent;border-radius:22px;padding:14px;text-align:center;font-weight:950;min-height:82px}
-.choice .big{font-size:36px;display:block}.choice.correct{border-color:#22c55e;background:#ecfdf5}.choice.wrong{border-color:#ef4444;background:#fef2f2}
-.week-card,.phase-card{width:100%;text-align:left;background:white;border-radius:24px;padding:15px;margin-bottom:10px;box-shadow:0 7px 18px rgba(15,23,42,.055)}
-.week-card.active{background:var(--dark);color:white}.week-card p,.phase-card p{margin:5px 0 0;color:var(--muted);font-size:13px;line-height:1.45}.week-card.active p{color:#cbd5e1}.phase-card small{font-weight:900;color:var(--muted)}.phase-card h3{margin:5px 0 0}.notice{background:#e0f2fe;border-radius:26px;padding:16px;font-size:14px;line-height:1.55}
+.reward{display:flex;align-items:center;justify-content:space-between;gap:12px;background:linear-gradient(135deg,#fef3c7,#fce7f3);border-radius:26px;padding:16px;margin-top:14px}.stars{font-size:26px;letter-spacing:2px}.reward p{margin:4px 0 0;color:#7c2d12;font-size:13px;font-weight:800}
+.trace-wrap{border-radius:24px;border:2px dashed #cbd5e1;overflow:hidden;background:white}.trace-head{display:flex;justify-content:space-between;align-items:center;background:#f8fafc;padding:10px 12px;font-size:13px;color:#475569}.trace-letter{font-weight:950;color:var(--ink);font-size:18px}canvas{display:block;width:100%;height:230px;touch-action:none;background:linear-gradient(#fff,#fff),repeating-linear-gradient(0deg,transparent 0 56px,#e5e7eb 57px 58px)}
+.choice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.choice{background:#f8fafc;border:2px solid transparent;border-radius:22px;padding:14px;text-align:center;font-weight:950;min-height:82px}.choice .big{font-size:36px;display:block}.choice.correct{border-color:#22c55e;background:#ecfdf5}.choice.wrong{border-color:#ef4444;background:#fef2f2}
+.week-card,.phase-card{width:100%;text-align:left;background:white;border-radius:24px;padding:15px;margin-bottom:10px;box-shadow:0 7px 18px rgba(15,23,42,.055)}.week-card.active{background:var(--dark);color:white}.week-card p,.phase-card p{margin:5px 0 0;color:var(--muted);font-size:13px;line-height:1.45}.week-card.active p{color:#cbd5e1}.phase-card small{font-weight:900;color:var(--muted)}.phase-card h3{margin:5px 0 0}.notice{background:#e0f2fe;border-radius:26px;padding:16px;font-size:14px;line-height:1.55}
 .search-box{position:relative;margin-bottom:12px}.search-box input{width:100%;height:48px;border-radius:18px;border:1px solid var(--line);outline:none;padding:0 14px 0 42px}.search-box span{position:absolute;left:14px;top:12px}.scroll-list{max-height:62vh;overflow-y:auto;padding-right:3px}.mini-note{font-size:12px;color:#64748b;line-height:1.45;margin-top:8px}
-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:1180px;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-top:1px solid #e5e7eb;padding:10px 12px 14px;z-index:30}
-.nav-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.nav-btn{border-radius:18px;padding:9px 4px;background:transparent;color:var(--muted);font-size:12px;font-weight:950}.nav-btn.active{background:var(--dark);color:white}.nav-btn span{display:block;font-size:21px;margin-bottom:2px}
+nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:1180px;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-top:1px solid #e5e7eb;padding:10px 12px 14px;z-index:30}.nav-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.nav-btn{border-radius:18px;padding:9px 4px;background:transparent;color:var(--muted);font-size:12px;font-weight:950}.nav-btn.active{background:var(--dark);color:white}.nav-btn span{display:block;font-size:21px;margin-bottom:2px}
 @media (min-width:760px) and (orientation:landscape){header{padding:18px 24px}.top h1{font-size:26px}.summary{grid-template-columns:repeat(4,150px);justify-content:start}main{padding:22px 24px}.learn-layout{grid-template-columns:minmax(360px,.95fr) minmax(420px,1.05fr);align-items:start}.hero-title{font-size:34px}.emoji{font-size:72px}.sound-letter{font-size:70px}.section-title{font-size:20px;margin-top:20px}.card{padding:18px}.right-col{position:sticky;top:142px}.choice{min-height:96px}.choice .big{font-size:46px}canvas{height:260px}.nav-grid{max-width:720px;margin:0 auto}.btn{min-height:54px;font-size:15px}}
 </style>
 </head>
 <body>
 <div class="app">
-<header>
-  <div class="top">
-    <div><p class="eyebrow">4~5세 전용 · 하루 15~20분</p><h1>1년 파닉스 놀이 앱</h1></div>
-    <div class="spark">✨</div>
-  </div>
-  <div class="summary">
-    <div class="summary-card dark"><p>오늘</p><strong id="summaryDay">Day 1</strong></div>
-    <div class="summary-card"><p>주차</p><strong id="summaryWeek">1주차</strong></div>
-    <div class="summary-card"><p>별</p><strong id="summaryStars">0개</strong></div>
-    <div class="summary-card"><p>연속</p><strong id="summaryStreak">0일</strong></div>
-  </div>
-</header>
-
+<header><div class="top"><div><p class="eyebrow">4~5세 전용 · 하루 15~20분</p><h1>1년 파닉스 놀이 앱</h1></div><div class="spark">✨</div></div><div class="summary"><div class="summary-card dark"><p>오늘</p><strong id="summaryDay">Day 1</strong></div><div class="summary-card"><p>주차</p><strong id="summaryWeek">1주차</strong></div><div class="summary-card"><p>별</p><strong id="summaryStars">0개</strong></div><div class="summary-card"><p>연속</p><strong id="summaryStreak">0일</strong></div></div></header>
 <main>
-<section id="todayPage" class="page active">
-  <div class="learn-layout">
-    <div class="left-col">
-      <div class="hero">
-        <div class="hero-head">
-          <div class="hero-line">
-            <div><div class="phase" id="phaseText">ABC 친숙화</div><div class="hero-title" id="mainTitle">알파벳 놀이</div></div>
-            <div class="emoji" id="emoji">🍎</div>
-          </div>
-          <div class="hero-detail" id="heroDetail">A a / apple</div>
-        </div>
-        <div class="hero-body">
-          <div class="sound-box">
-            <div><div style="font-size:13px;color:#64748b;font-weight:800">오늘의 글자</div><div class="sound-letter" id="letterText">A a</div></div>
-            <div class="sound-right"><strong id="soundText">A</strong><p id="wordText">apple · 사과</p></div>
-          </div>
-          <div class="chips" id="chips"></div>
-          <div class="grid3" style="margin-top:13px">
-            <button class="btn orange" id="chantBtn">🎵 느린 챈트</button>
-            <button class="btn sky" id="wordBtn">🔊 단어</button>
-            <button class="btn pink" id="sentenceBtn">🔊 문장</button>
-          </div>
-          <div class="mini-note" id="modeNote">1~4주차는 A~Z를 대문자/소문자와 그림으로 친숙하게 만드는 단계입니다.</div>
-        </div>
-      </div>
-      <div class="reward"><div><strong>오늘 별 모으기</strong><p>5개 미션 완료 시 오늘 학습 완료</p></div><div class="stars" id="todayStars">☆☆☆☆☆</div></div>
-      <div class="section-title">🧩 오늘 미션</div>
-      <div class="mission-list" id="missionList"></div>
-    </div>
-
-    <div class="right-col">
-      <div class="section-title">🗣 따라 말하기</div>
-      <div class="card">
-        <div>목표 단어: <strong id="targetWord">apple</strong></div>
-        <div class="grid2" style="margin-top:12px">
-          <button class="btn yellow" id="repeatTargetBtn">🔁 목표 듣기</button>
-          <button class="btn green" id="speakDoneBtn">✅ 따라 말했어요</button>
-        </div>
-        <div class="result">iPhone/iPad 호환성을 위해 녹음 기능은 제거했습니다. 부모가 듣고 완료 버튼을 누르는 방식이 가장 안정적입니다.</div>
-      </div>
-
-      <div class="section-title">🎮 소리/그림 찾기 게임</div>
-      <div class="card">
-        <p style="margin:0 0 12px;color:#475569;font-size:14px">문제를 듣고 같은 그림/단어를 골라보세요.</p>
-        <button class="btn sky" style="width:100%;margin-bottom:12px" id="quizSoundBtn">🔊 문제 듣기</button>
-        <div class="choice-grid" id="choiceGrid"></div>
-        <div class="result" id="quizResult">정답을 고르면 별을 받을 수 있습니다.</div>
-      </div>
-
-      <div class="section-title">✏️ 따라 쓰기</div>
-      <div class="card">
-        <div class="trace-wrap">
-          <div class="trace-head"><span>손가락 또는 애플펜슬로 따라 써보세요</span><span class="trace-letter" id="traceLetter">A a</span></div>
-          <canvas id="traceCanvas"></canvas>
-        </div>
-        <div class="grid3" style="margin-top:10px">
-          <button class="btn light" id="clearCanvasBtn">지우기</button>
-          <button class="btn sky" id="guideBtn">가이드 숨기기</button>
-          <button class="btn green" id="writingDoneBtn">쓰기 완료</button>
-        </div>
-      </div>
-
-      <div class="grid3">
-        <button class="btn light" id="prevBtn">‹ 이전</button>
-        <button class="btn dark" id="doneBtn">✓ 오늘 완료</button>
-        <button class="btn light" id="nextBtn">다음 ›</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="weekPage" class="page">
-  <div class="phase-card"><small id="weekLabel">Week 1</small><h3 id="weekTitle">ABC 친숙화</h3><p id="weekGoal">목표</p><p id="weekFocus">중점</p></div>
-  <div id="weekList"></div>
-</section>
-
-<section id="yearPage" class="page">
-  <div id="phaseList"></div>
-  <div class="notice"><strong>운영 기준</strong><br>1~4주차는 ABC 친숙화, 5주차부터 파닉스 소리 학습입니다. iPhone/iPad 호환성을 위해 녹음 재생은 제외하고, 듣기·따라말하기·게임·따라쓰기 중심으로 구성했습니다.</div>
-</section>
-
-<section id="searchPage" class="page">
-  <div class="search-box"><span>🔎</span><input id="searchInput" placeholder="day, week, apple, cat 검색"></div>
-  <div class="scroll-list" id="searchList"></div>
-</section>
-</main>
-
-<nav>
-  <div class="nav-grid">
-    <button class="nav-btn active" data-tab="today"><span>🏠</span>오늘</button>
-    <button class="nav-btn" data-tab="week"><span>📅</span>주간</button>
-    <button class="nav-btn" data-tab="year"><span>🔁</span>1년</button>
-    <button class="nav-btn" data-tab="search"><span>🔎</span>검색</button>
-  </div>
-</nav>
-</div>
-
+<section id="todayPage" class="page active"><div class="learn-layout"><div class="left-col"><div class="hero"><div class="hero-head"><div class="hero-line"><div><div class="phase" id="phaseText">ABC 친숙화</div><div class="hero-title" id="mainTitle">알파벳 놀이</div></div><div class="emoji" id="emoji">🍎</div></div><div class="hero-detail" id="heroDetail">A a / 애 / apple</div></div><div class="hero-body"><div class="sound-box"><div><div style="font-size:13px;color:#64748b;font-weight:800">오늘의 글자</div><div class="sound-letter" id="letterText">A a</div></div><div class="sound-right"><strong id="soundText">/애/</strong><p id="wordText">apple · 사과</p></div></div><div class="chips" id="chips"></div><div class="grid3" style="margin-top:13px"><button class="btn orange" id="chantBtn">🎵 천천히 따라</button><button class="btn sky" id="soundBtn">🔊 파닉스 소리</button><button class="btn pink" id="wordBtn">🔊 단어</button></div><div class="mini-note" id="modeNote">A, a, /애/, apple 순서로 천천히 듣고 따라합니다.</div></div></div><div class="reward"><div><strong>오늘 별 모으기</strong><p>5개 미션 완료 시 오늘 학습 완료</p></div><div class="stars" id="todayStars">☆☆☆☆☆</div></div><div class="section-title">🧩 오늘 미션</div><div class="mission-list" id="missionList"></div></div><div class="right-col"><div class="section-title">🗣 따라 말하기</div><div class="card"><div>오늘 따라 말하기: <strong id="targetWord">a, a, apple</strong></div><div class="grid2" style="margin-top:12px"><button class="btn yellow" id="repeatTargetBtn">🔁 천천히 듣기</button><button class="btn green" id="speakDoneBtn">✅ 따라 말했어요</button></div><div class="result">iPhone/iPad 호환성을 위해 녹음 기능은 제거했습니다. 부모가 듣고 완료 버튼을 누르는 방식이 가장 안정적입니다.</div></div><div class="section-title">🎮 소리/그림 찾기 게임</div><div class="card"><p style="margin:0 0 12px;color:#475569;font-size:14px">문제를 듣고 같은 그림/단어를 골라보세요.</p><button class="btn sky" style="width:100%;margin-bottom:12px" id="quizSoundBtn">🔊 문제 듣기</button><div class="choice-grid" id="choiceGrid"></div><div class="result" id="quizResult">정답을 고르면 효과음과 별을 받을 수 있습니다.</div></div><div class="section-title">✏️ 따라 쓰기</div><div class="card"><div class="trace-wrap"><div class="trace-head"><span>손가락 또는 애플펜슬로 따라 써보세요</span><span class="trace-letter" id="traceLetter">A a</span></div><canvas id="traceCanvas"></canvas></div><div class="grid3" style="margin-top:10px"><button class="btn light" id="clearCanvasBtn">지우기</button><button class="btn sky" id="guideBtn">가이드 숨기기</button><button class="btn green" id="writingDoneBtn">쓰기 완료</button></div></div><div class="grid3"><button class="btn light" id="prevBtn">‹ 이전</button><button class="btn dark" id="doneBtn">✓ 오늘 완료</button><button class="btn light" id="nextBtn">다음 ›</button></div></div></div></section>
+<section id="weekPage" class="page"><div class="phase-card"><small id="weekLabel">Week 1</small><h3 id="weekTitle">ABC 친숙화</h3><p id="weekGoal">목표</p><p id="weekFocus">중점</p></div><div id="weekList"></div></section>
+<section id="yearPage" class="page"><div id="phaseList"></div><div class="notice"><strong>운영 기준</strong><br>1~4주차는 ABC 친숙화, 5주차부터 파닉스 소리 학습입니다. 각 글자는 “알파벳 이름 → 파닉스 소리 → 단어” 순서로 천천히 반복합니다.</div></section>
+<section id="searchPage" class="page"><div class="search-box"><span>🔎</span><input id="searchInput" placeholder="day, week, apple, cat 검색"></div><div class="scroll-list" id="searchList"></div></section>
+</main><nav><div class="nav-grid"><button class="nav-btn active" data-tab="today"><span>🏠</span>오늘</button><button class="nav-btn" data-tab="week"><span>📅</span>주간</button><button class="nav-btn" data-tab="year"><span>🔁</span>1년</button><button class="nav-btn" data-tab="search"><span>🔎</span>검색</button></div></nav></div>
 <script>
 var ABC=[
-{U:'A',l:'a',word:'apple',ko:'사과',emoji:'🍎'},{U:'B',l:'b',word:'ball',ko:'공',emoji:'⚽'},{U:'C',l:'c',word:'cat',ko:'고양이',emoji:'🐱'},{U:'D',l:'d',word:'dog',ko:'강아지',emoji:'🐶'},{U:'E',l:'e',word:'egg',ko:'달걀',emoji:'🥚'},{U:'F',l:'f',word:'fish',ko:'물고기',emoji:'🐟'},{U:'G',l:'g',word:'goat',ko:'염소',emoji:'🐐'},{U:'H',l:'h',word:'hat',ko:'모자',emoji:'🎩'},{U:'I',l:'i',word:'igloo',ko:'이글루',emoji:'🏠'},{U:'J',l:'j',word:'jam',ko:'잼',emoji:'🍓'},{U:'K',l:'k',word:'kite',ko:'연',emoji:'🪁'},{U:'L',l:'l',word:'lion',ko:'사자',emoji:'🦁'},{U:'M',l:'m',word:'map',ko:'지도',emoji:'🗺️'},{U:'N',l:'n',word:'net',ko:'그물',emoji:'🕸️'},{U:'O',l:'o',word:'octopus',ko:'문어',emoji:'🐙'},{U:'P',l:'p',word:'pig',ko:'돼지',emoji:'🐷'},{U:'Q',l:'q',word:'queen',ko:'여왕',emoji:'👑'},{U:'R',l:'r',word:'rabbit',ko:'토끼',emoji:'🐰'},{U:'S',l:'s',word:'sun',ko:'해',emoji:'☀️'},{U:'T',l:'t',word:'tap',ko:'톡톡',emoji:'🚰'},{U:'U',l:'u',word:'umbrella',ko:'우산',emoji:'☂️'},{U:'V',l:'v',word:'van',ko:'밴',emoji:'🚐'},{U:'W',l:'w',word:'web',ko:'거미줄',emoji:'🕸️'},{U:'X',l:'x',word:'box',ko:'상자',emoji:'📦'},{U:'Y',l:'y',word:'yo-yo',ko:'요요',emoji:'🪀'},{U:'Z',l:'z',word:'zip',ko:'지퍼',emoji:'🤐'}];
-
+{U:'A',name:'A',l:'a',soundText:'애',soundSpeak:'a',word:'apple',ko:'사과',emoji:'🍎'},{U:'B',name:'B',l:'b',soundText:'브',soundSpeak:'buh',word:'ball',ko:'공',emoji:'⚽'},{U:'C',name:'C',l:'c',soundText:'크',soundSpeak:'kuh',word:'cat',ko:'고양이',emoji:'🐱'},{U:'D',name:'D',l:'d',soundText:'드',soundSpeak:'duh',word:'dog',ko:'강아지',emoji:'🐶'},{U:'E',name:'E',l:'e',soundText:'에',soundSpeak:'e',word:'egg',ko:'달걀',emoji:'🥚'},{U:'F',name:'F',l:'f',soundText:'프',soundSpeak:'fff',word:'fish',ko:'물고기',emoji:'🐟'},{U:'G',name:'G',l:'g',soundText:'그',soundSpeak:'guh',word:'goat',ko:'염소',emoji:'🐐'},{U:'H',name:'H',l:'h',soundText:'흐',soundSpeak:'huh',word:'hat',ko:'모자',emoji:'🎩'},{U:'I',name:'I',l:'i',soundText:'이',soundSpeak:'i',word:'igloo',ko:'이글루',emoji:'🏠'},{U:'J',name:'J',l:'j',soundText:'즈',soundSpeak:'juh',word:'jam',ko:'잼',emoji:'🍓'},{U:'K',name:'K',l:'k',soundText:'크',soundSpeak:'kuh',word:'kite',ko:'연',emoji:'🪁'},{U:'L',name:'L',l:'l',soundText:'을',soundSpeak:'lll',word:'lion',ko:'사자',emoji:'🦁'},{U:'M',name:'M',l:'m',soundText:'음',soundSpeak:'mmm',word:'map',ko:'지도',emoji:'🗺️'},{U:'N',name:'N',l:'n',soundText:'은',soundSpeak:'nnn',word:'net',ko:'그물',emoji:'🕸️'},{U:'O',name:'O',l:'o',soundText:'아',soundSpeak:'o',word:'octopus',ko:'문어',emoji:'🐙'},{U:'P',name:'P',l:'p',soundText:'프',soundSpeak:'puh',word:'pig',ko:'돼지',emoji:'🐷'},{U:'Q',name:'Q',l:'q',soundText:'쿼',soundSpeak:'quh',word:'queen',ko:'여왕',emoji:'👑'},{U:'R',name:'R',l:'r',soundText:'르',soundSpeak:'ruh',word:'rabbit',ko:'토끼',emoji:'🐰'},{U:'S',name:'S',l:'s',soundText:'스',soundSpeak:'sss',word:'sun',ko:'해',emoji:'☀️'},{U:'T',name:'T',l:'t',soundText:'트',soundSpeak:'tuh',word:'tap',ko:'톡톡',emoji:'🚰'},{U:'U',name:'U',l:'u',soundText:'어',soundSpeak:'u',word:'umbrella',ko:'우산',emoji:'☂️'},{U:'V',name:'V',l:'v',soundText:'브',soundSpeak:'vvv',word:'van',ko:'밴',emoji:'🚐'},{U:'W',name:'W',l:'w',soundText:'워',soundSpeak:'wuh',word:'web',ko:'거미줄',emoji:'🕸️'},{U:'X',name:'X',l:'x',soundText:'크스',soundSpeak:'ks',word:'box',ko:'상자',emoji:'📦'},{U:'Y',name:'Y',l:'y',soundText:'이',soundSpeak:'yuh',word:'yo-yo',ko:'요요',emoji:'🪀'},{U:'Z',name:'Z',l:'z',soundText:'즈',soundSpeak:'zzz',word:'zip',ko:'지퍼',emoji:'🤐'}];
 var PHONICS_ORDER=['s','a','t','p','i','n','m','d','g','o','c','k','e','u','r','h','b','f','l','j','v','w','x','y','z','q'];
 var WORD_FAMILIES={at:['cat','bat','hat','mat','sat'],an:['can','pan','fan','man','van'],ap:['cap','map','tap','nap','lap'],in:['pin','tin','fin','win','bin'],it:['sit','pit','fit','hit','kit'],ip:['lip','sip','zip','tip','rip'],ot:['hot','pot','dot','cot','lot'],op:['hop','top','pop','mop','cop'],og:['dog','log','fog','hog'],ug:['bug','mug','rug','hug'],un:['sun','run','fun','bun'],et:['pet','net','jet','wet']};
 var SIGHT_WORDS=['I','a','the','my','see','go','to','we','me','like','is','it','can','you','and','up','in','on','look','here'];
-var PHASES=[
-{weeks:[1,4],title:'ABC 친숙화',goal:'A~Z 대문자/소문자와 그림에 친숙해지기',focus:'ABC 노출·그림 연결·알파벳 이름 듣기'},
-{weeks:[5,12],title:'파닉스 소리 시작',goal:'문자와 대표 소리 연결',focus:'s,a,t,p,i,n 순서로 읽기 준비'},
-{weeks:[13,24],title:'CVC 블렌딩',goal:'cat, map, pin 형태 읽기',focus:'소리 붙여 읽기'},
-{weeks:[25,36],title:'Word Family',goal:'at/an/ap 등 패턴 읽기',focus:'비슷한 단어 묶음'},
-{weeks:[37,44],title:'Sight Word 병행',goal:'the, I, see 등 자주 보는 단어',focus:'짧은 문장 읽기'},
-{weeks:[45,52],title:'리딩 루틴',goal:'짧은 문장과 그림책 연결',focus:'자신감·반복·놀이'}];
-
-var currentDay=Number(localStorage.getItem('phonics_current_day')||1);
-var completed=JSON.parse(localStorage.getItem('phonics_completed')||'{}');
-var missions=JSON.parse(localStorage.getItem('phonics_missions')||'{}');
-var stars=Number(localStorage.getItem('phonics_stars')||0);
-var streak=Number(localStorage.getItem('phonics_streak')||0);
-var lastDoneDate=localStorage.getItem('phonics_last_done')||'';
-var canvas,ctx,drawing=false,guideVisible=true,quizChoices=[];
-
+var PHASES=[{weeks:[1,4],title:'ABC 친숙화',goal:'A~Z 대문자/소문자와 그림에 친숙해지기',focus:'알파벳 이름·파닉스 소리·그림 연결'},{weeks:[5,12],title:'파닉스 소리 시작',goal:'문자와 대표 소리 연결',focus:'s,a,t,p,i,n 순서로 읽기 준비'},{weeks:[13,24],title:'CVC 블렌딩',goal:'cat, map, pin 형태 읽기',focus:'소리 붙여 읽기'},{weeks:[25,36],title:'Word Family',goal:'at/an/ap 등 패턴 읽기',focus:'비슷한 단어 묶음'},{weeks:[37,44],title:'Sight Word 병행',goal:'the, I, see 등 자주 보는 단어',focus:'짧은 문장 읽기'},{weeks:[45,52],title:'리딩 루틴',goal:'짧은 문장과 그림책 연결',focus:'자신감·반복·놀이'}];
+var currentDay=Number(localStorage.getItem('phonics_current_day')||1),completed=JSON.parse(localStorage.getItem('phonics_completed')||'{}'),missions=JSON.parse(localStorage.getItem('phonics_missions')||'{}'),stars=Number(localStorage.getItem('phonics_stars')||0),streak=Number(localStorage.getItem('phonics_streak')||0),lastDoneDate=localStorage.getItem('phonics_last_done')||'',canvas,ctx,drawing=false,guideVisible=true,quizChoices=[];
 function el(id){return document.getElementById(id)}
 function todayKey(){return new Date().toISOString().slice(0,10)}
 function getPhase(w){for(var i=0;i<PHASES.length;i++){if(w>=PHASES[i].weeks[0]&&w<=PHASES[i].weeks[1])return PHASES[i]}return PHASES[0]}
 function itemByLower(l){for(var i=0;i<ABC.length;i++){if(ABC[i].l===l)return ABC[i]}return ABC[0]}
-
-function getPlan(day){
- var week=Math.ceil(day/7),dow=((day-1)%7)+1,phase=getPhase(week),mode='abc',item,main='알파벳 놀이',detail='',mini=[];
- if(week<=4){item=ABC[(day-1)%ABC.length];detail=item.U+' '+item.l+' / '+item.word;mini=[item.U+' '+item.l,item.word,'ABC']}
- else if(week<=12){mode='phonics';item=itemByLower(PHONICS_ORDER[(day-29)%PHONICS_ORDER.length]);main='파닉스 소리';detail=item.l+' sound / '+item.word;mini=[item.l,item.word,'sound']}
- else if(week<=24){mode='cvc';var keys=Object.keys(WORD_FAMILIES),family=keys[(day-85)%keys.length],word=WORD_FAMILIES[family][(day-1)%WORD_FAMILIES[family].length];item={U:word[0].toUpperCase(),l:word[0],word:word,ko:'CVC 단어',emoji:'🔤'};main='CVC 블렌딩';detail=family+' 패턴 / '+word;mini=WORD_FAMILIES[family]}
- else if(week<=36){mode='family';var keys2=Object.keys(WORD_FAMILIES),family2=keys2[(day-169)%keys2.length],word2=WORD_FAMILIES[family2][(day-1)%WORD_FAMILIES[family2].length];item={U:family2.toUpperCase(),l:family2,word:word2,ko:'패턴 단어',emoji:'🧩'};main='Word Family';detail='-'+family2+' family / '+word2;mini=WORD_FAMILIES[family2]}
- else if(week<=44){mode='sight';var sight=SIGHT_WORDS[(day-253)%SIGHT_WORDS.length];item={U:sight,l:sight,word:sight,ko:'Sight Word',emoji:'👀'};main='Sight Word';detail='자주 보는 단어 / '+sight;mini=[sight,'I','see','the']}
- else{mode='sentence';item=ABC[(day-1)%ABC.length];main='짧은 문장';detail='I see a '+item.word+'.';mini=['I','see','a',item.word]}
- if(dow===6){main='주간 복습';detail='이번 주 글자와 단어 다시 보기'}
- if(dow===7){main='놀이 학습';detail='챈트, 게임, 따라쓰기 중 선택'}
- return {day:day,week:week,dow:dow,phase:phase,mode:mode,item:item,main:main,detail:detail,mini:mini}
-}
-
-function save(){
- localStorage.setItem('phonics_current_day',currentDay);
- localStorage.setItem('phonics_completed',JSON.stringify(completed));
- localStorage.setItem('phonics_missions',JSON.stringify(missions));
- localStorage.setItem('phonics_stars',stars);
- localStorage.setItem('phonics_streak',streak);
- localStorage.setItem('phonics_last_done',lastDoneDate)
-}
-
-function speak(text,rate,pitch){
- if(!window.speechSynthesis){alert('이 브라우저는 음성 재생을 지원하지 않습니다.');return}
- speechSynthesis.cancel();
- var u=new SpeechSynthesisUtterance(text);
- u.lang='en-US';u.rate=rate||0.62;u.pitch=pitch||1.1;
- speechSynthesis.speak(u)
-}
-
-function slowChant(){
- var p=getPlan(currentDay);
- var parts=p.mode==='abc'?[p.item.U,p.item.l,p.item.word,p.item.U,p.item.l,p.item.word]:[p.item.l,p.item.l,p.item.l,p.item.word,p.item.word,p.item.word];
- speechSynthesis.cancel();
- var i=0;
- function next(){
-   if(i>=parts.length){markMission('chant');return}
-   var u=new SpeechSynthesisUtterance(parts[i++]);
-   u.lang='en-US';u.rate=.46;u.pitch=1.16;
-   u.onend=function(){setTimeout(next,430)};
-   speechSynthesis.speak(u)
- }
- next()
-}
-
-function markMission(k){
- var dk='d'+currentDay;
- if(!missions[dk])missions[dk]={};
- if(!missions[dk][k]){missions[dk][k]=true;stars++}
- save();render(false)
-}
-
-function dayMissionCount(){
- var m=missions['d'+currentDay]||{},n=0;
- for(var k in m){if(m[k])n++}
- return n
-}
-
-function makeQuiz(){
- var p=getPlan(currentDay);
- quizChoices=[p.item];
- var idx=1;
- while(quizChoices.length<4){
-   var base=ABC.indexOf(p.item);
-   var pick=ABC[((base>=0?base:currentDay)+idx*3)%ABC.length];
-   var exists=false;
-   for(var i=0;i<quizChoices.length;i++){if(quizChoices[i].word===pick.word)exists=true}
-   if(!exists)quizChoices.push(pick);
-   idx++
- }
- quizChoices.sort(function(){return Math.random()-.5})
-}
-
-function render(refreshQuiz){
- var p=getPlan(currentDay),m=missions['d'+currentDay]||{};
- el('summaryDay').textContent='Day '+currentDay;
- el('summaryWeek').textContent=p.week+'주차';
- el('summaryStars').textContent=stars+'개';
- el('summaryStreak').textContent=streak+'일';
- el('phaseText').textContent=p.phase.title;
- el('mainTitle').textContent=p.main;
- el('emoji').textContent=p.item.emoji;
- el('heroDetail').textContent=p.detail;
- el('letterText').textContent=p.mode==='abc'?p.item.U+' '+p.item.l:p.item.l;
- el('soundText').textContent=p.mode==='abc'?p.item.U:p.item.l;
- el('wordText').textContent=p.item.word+' · '+p.item.ko;
- el('targetWord').textContent=p.item.word;
- el('traceLetter').textContent=p.mode==='abc'?p.item.U+' '+p.item.l:p.item.l;
- el('modeNote').textContent=p.week<=4?'1~4주차는 A~Z를 대문자/소문자와 그림으로 친숙하게 만드는 단계입니다.':'5주차부터는 실제 읽기로 연결되는 파닉스 소리 학습입니다.';
- el('chips').innerHTML=p.mini.map(function(x){return '<span class="chip" data-say="'+x+'">'+x+'</span>'}).join('');
- Array.prototype.forEach.call(document.querySelectorAll('.chip'),function(c){c.onclick=function(){speak(c.dataset.say,.58)}});
- el('todayStars').textContent='★'.repeat(dayMissionCount())+'☆'.repeat(Math.max(0,5-dayMissionCount()));
- var list=[['chant','🎵','느린 챈트 듣기','천천히 나오는 글자와 단어를 따라합니다.'],['word','🔊','단어 듣기','오늘의 단어를 듣고 따라합니다.'],['speak','🗣','따라 말하기','부모가 듣고 완료를 눌러줍니다.'],['quiz','🎮','그림 찾기','문제를 듣고 맞는 그림/단어를 고릅니다.'],['write','✏️','따라 쓰기','큰 글자를 손가락이나 애플펜슬로 씁니다.']];
- el('missionList').innerHTML=list.map(function(a){return '<div class="mission '+(m[a[0]]?'done':'')+'"><div class="mission-icon">'+a[1]+'</div><div class="mission-text"><strong>'+a[2]+'</strong><p>'+a[3]+'</p></div><div class="mission-check">'+(m[a[0]]?'✓':'')+'</div></div>'}).join('');
- el('doneBtn').textContent=completed[currentDay]?'✓ 완료됨':'✓ 오늘 완료';
- el('prevBtn').disabled=currentDay<=1;
- el('nextBtn').disabled=currentDay>=365;
- if(refreshQuiz!==false)makeQuiz();
- renderQuiz();renderWeek();renderSearch();drawGuide();save()
-}
-
-function renderQuiz(){
- var p=getPlan(currentDay);
- el('choiceGrid').innerHTML=quizChoices.map(function(o){return '<button class="choice" data-word="'+o.word+'"><span class="big">'+o.emoji+'</span>'+o.word+'<br><small>'+(o.U||o.l)+' '+(o.l||'')+'</small></button>'}).join('');
- Array.prototype.forEach.call(document.querySelectorAll('.choice'),function(btn){
-   btn.onclick=function(){
-     var ok=btn.dataset.word===p.item.word;
-     Array.prototype.forEach.call(document.querySelectorAll('.choice'),function(b){b.classList.remove('correct','wrong')});
-     btn.classList.add(ok?'correct':'wrong');
-     el('quizResult').innerHTML=ok?'정답입니다. 별 1개 획득!':'다시 들어보고 골라보세요.';
-     if(ok)markMission('quiz')
-   }
- })
-}
-
-function renderWeek(){
- var p=getPlan(currentDay);
- el('weekLabel').textContent='Week '+p.week;
- el('weekTitle').textContent=p.phase.title;
- el('weekGoal').textContent='목표: '+p.phase.goal;
- el('weekFocus').textContent='중점: '+p.phase.focus;
- var html='';
- for(var i=(p.week-1)*7+1;i<=Math.min(p.week*7,365);i++){
-   var d=getPlan(i);
-   html+='<button class="week-card '+(i===currentDay?'active':'')+'" data-day="'+i+'"><strong>Day '+i+' · '+d.main+' '+(completed[i]?'✓':'')+'</strong><p>'+d.detail+'</p></button>'
- }
- el('weekList').innerHTML=html;
- Array.prototype.forEach.call(document.querySelectorAll('#weekList .week-card'),function(b){b.onclick=function(){goDay(Number(b.dataset.day));openTab('today')}})
-}
-
-function renderYear(){
- el('phaseList').innerHTML=PHASES.map(function(p,i){return '<div class="phase-card"><small>'+p.weeks[0]+'~'+p.weeks[1]+'주차</small><h3>'+(i+1)+'. '+p.title+'</h3><p>목표: '+p.goal+'</p><p>중점: '+p.focus+'</p></div>'}).join('')
-}
-
-function renderSearch(){
- var q=(el('searchInput')?el('searchInput').value:'').toLowerCase(),html='';
- for(var i=1;i<=365;i++){
-   var d=getPlan(i);
-   var text=(i+' '+d.week+' '+d.main+' '+d.detail+' '+d.phase.title+' '+d.item.word).toLowerCase();
-   if(text.indexOf(q)>-1){html+='<button class="week-card" data-day="'+i+'"><strong>Day '+i+' · Week '+d.week+' '+d.item.emoji+'</strong><p>'+d.main+' · '+d.detail+'</p></button>'}
- }
- el('searchList').innerHTML=html||"<div class='notice'>검색 결과가 없습니다.</div>";
- Array.prototype.forEach.call(document.querySelectorAll('#searchList .week-card'),function(b){b.onclick=function(){goDay(Number(b.dataset.day));openTab('today')}})
-}
-
-function goDay(d){
- currentDay=Math.max(1,Math.min(365,d));
- clearCanvas();render(true);
- window.scrollTo({top:0,behavior:'smooth'})
-}
-
-function openTab(tab){
- Array.prototype.forEach.call(document.querySelectorAll('.page'),function(p){p.classList.remove('active')});
- Array.prototype.forEach.call(document.querySelectorAll('.nav-btn'),function(b){b.classList.remove('active')});
- el(tab+'Page').classList.add('active');
- document.querySelector("[data-tab='"+tab+"']").classList.add('active');
- if(tab==='year')renderYear();
- if(tab==='search')renderSearch();
- resizeCanvas()
-}
-
-function resizeCanvas(){
- canvas=el('traceCanvas');
- if(!canvas)return;
- var ratio=window.devicePixelRatio||1,rect=canvas.getBoundingClientRect();
- canvas.width=rect.width*ratio;
- canvas.height=canvas.clientHeight*ratio;
- ctx=canvas.getContext('2d');
- ctx.setTransform(ratio,0,0,ratio,0,0);
- ctx.lineWidth=9;ctx.lineCap='round';ctx.lineJoin='round';ctx.strokeStyle='#0f172a';
- drawGuide()
-}
-
-function drawGuide(){
- if(!ctx)return;
- ctx.clearRect(0,0,canvas.clientWidth,canvas.clientHeight);
- if(!guideVisible)return;
- var p=getPlan(currentDay);
- ctx.save();ctx.globalAlpha=.16;ctx.fillStyle='#0f172a';
- ctx.font=(p.mode==='abc'?'118px':'150px')+' -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif';
- ctx.textAlign='center';ctx.textBaseline='middle';
- ctx.fillText(p.mode==='abc'?p.item.U+' '+p.item.l:p.item.l,canvas.clientWidth/2,canvas.clientHeight/2);
- ctx.restore()
-}
+function getPlan(day){var week=Math.ceil(day/7),dow=((day-1)%7)+1,phase=getPhase(week),mode='abc',item,main='알파벳 놀이',detail='',mini=[];if(week<=4){item=ABC[(day-1)%ABC.length];detail=item.U+' '+item.l+' / '+item.soundText+' / '+item.word;mini=[item.U+' '+item.l,'/'+item.soundText+'/',item.word]}else if(week<=12){mode='phonics';item=itemByLower(PHONICS_ORDER[(day-29)%PHONICS_ORDER.length]);main='파닉스 소리';detail=item.l+' / '+item.soundText+' / '+item.word;mini=[item.l,'/'+item.soundText+'/',item.word]}else if(week<=24){mode='cvc';var keys=Object.keys(WORD_FAMILIES),family=keys[(day-85)%keys.length],word=WORD_FAMILIES[family][(day-1)%WORD_FAMILIES[family].length];item={U:word[0].toUpperCase(),l:word[0],soundText:'블렌딩',soundSpeak:word,word:word,ko:'CVC 단어',emoji:'🔤'};main='CVC 블렌딩';detail=family+' 패턴 / '+word;mini=WORD_FAMILIES[family]}else if(week<=36){mode='family';var keys2=Object.keys(WORD_FAMILIES),family2=keys2[(day-169)%keys2.length],word2=WORD_FAMILIES[family2][(day-1)%WORD_FAMILIES[family2].length];item={U:family2.toUpperCase(),l:family2,soundText:'패턴',soundSpeak:word2,word:word2,ko:'패턴 단어',emoji:'🧩'};main='Word Family';detail='-'+family2+' family / '+word2;mini=WORD_FAMILIES[family2]}else if(week<=44){mode='sight';var sight=SIGHT_WORDS[(day-253)%SIGHT_WORDS.length];item={U:sight,l:sight,soundText:'사이트워드',soundSpeak:sight,word:sight,ko:'Sight Word',emoji:'👀'};main='Sight Word';detail='자주 보는 단어 / '+sight;mini=[sight,'I','see','the']}else{mode='sentence';item=ABC[(day-1)%ABC.length];main='짧은 문장';detail='I see a '+item.word+'.';mini=['I','see','a',item.word]}if(dow===6){main='주간 복습';detail='이번 주 글자와 단어 다시 보기'}if(dow===7){main='놀이 학습';detail='챈트, 게임, 따라쓰기 중 선택'}return{day:day,week:week,dow:dow,phase:phase,mode:mode,item:item,main:main,detail:detail,mini:mini}}
+function save(){localStorage.setItem('phonics_current_day',currentDay);localStorage.setItem('phonics_completed',JSON.stringify(completed));localStorage.setItem('phonics_missions',JSON.stringify(missions));localStorage.setItem('phonics_stars',stars);localStorage.setItem('phonics_streak',streak);localStorage.setItem('phonics_last_done',lastDoneDate)}
+function speak(text,rate,pitch){if(!window.speechSynthesis){alert('이 브라우저는 음성 재생을 지원하지 않습니다.');return}speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(text);u.lang='en-US';u.rate=rate||0.5;u.pitch=pitch||1.05;speechSynthesis.speak(u)}
+function playCorrectSound(){try{var ac=new(window.AudioContext||window.webkitAudioContext)(),now=ac.currentTime;[523,659,784].forEach(function(freq,i){var osc=ac.createOscillator(),gain=ac.createGain();osc.frequency.value=freq;gain.gain.setValueAtTime(.0001,now+i*.12);gain.gain.exponentialRampToValueAtTime(.16,now+i*.12+.02);gain.gain.exponentialRampToValueAtTime(.0001,now+i*.12+.11);osc.connect(gain);gain.connect(ac.destination);osc.start(now+i*.12);osc.stop(now+i*.12+.12)})}catch(e){}}
+function playWrongSound(){try{var ac=new(window.AudioContext||window.webkitAudioContext)(),osc=ac.createOscillator(),gain=ac.createGain(),now=ac.currentTime;osc.frequency.value=180;gain.gain.setValueAtTime(.12,now);gain.gain.exponentialRampToValueAtTime(.0001,now+.18);osc.connect(gain);gain.connect(ac.destination);osc.start(now);osc.stop(now+.2)}catch(e){}}
+function slowChant(){var p=getPlan(currentDay),parts=p.mode==='abc'?[p.item.name,p.item.l,p.item.soundSpeak,p.item.soundSpeak,p.item.word,p.item.name,p.item.l,p.item.soundSpeak,p.item.word]:[p.item.l,p.item.soundSpeak,p.item.soundSpeak,p.item.word,p.item.l,p.item.soundSpeak,p.item.word];speechSynthesis.cancel();var i=0;function next(){if(i>=parts.length){markMission('chant');return}var u=new SpeechSynthesisUtterance(parts[i++]);u.lang='en-US';u.rate=.42;u.pitch=1.08;u.onend=function(){setTimeout(next,520)};speechSynthesis.speak(u)}next()}
+function markMission(k){var dk='d'+currentDay;if(!missions[dk])missions[dk]={};if(!missions[dk][k]){missions[dk][k]=true;stars++}save();render(false)}
+function dayMissionCount(){var m=missions['d'+currentDay]||{},n=0;for(var k in m){if(m[k])n++}return n}
+function makeQuiz(){var p=getPlan(currentDay);quizChoices=[p.item];var idx=1;while(quizChoices.length<4){var base=ABC.indexOf(p.item),pick=ABC[((base>=0?base:currentDay)+idx*3)%ABC.length],exists=false;for(var i=0;i<quizChoices.length;i++){if(quizChoices[i].word===pick.word)exists=true}if(!exists)quizChoices.push(pick);idx++}quizChoices.sort(function(){return Math.random()-.5})}
+function render(refreshQuiz){var p=getPlan(currentDay),m=missions['d'+currentDay]||{};el('summaryDay').textContent='Day '+currentDay;el('summaryWeek').textContent=p.week+'주차';el('summaryStars').textContent=stars+'개';el('summaryStreak').textContent=streak+'일';el('phaseText').textContent=p.phase.title;el('mainTitle').textContent=p.main;el('emoji').textContent=p.item.emoji;el('heroDetail').textContent=p.detail;el('letterText').textContent=p.mode==='abc'?p.item.U+' '+p.item.l:p.item.l;el('soundText').textContent='/'+p.item.soundText+'/';el('wordText').textContent=p.item.word+' · '+p.item.ko;el('targetWord').textContent=p.mode==='abc'?p.item.l+', '+p.item.l+', '+p.item.word:p.item.l+', '+p.item.word;el('traceLetter').textContent=p.mode==='abc'?p.item.U+' '+p.item.l:p.item.l;el('modeNote').textContent=p.week<=4?'A, a, /'+p.item.soundText+'/, '+p.item.word+' 순서로 친숙하게 듣고 따라합니다.':'파닉스 단계는 글자 이름보다 소리와 단어 연결을 우선합니다.';el('chips').innerHTML=p.mini.map(function(x){return '<span class="chip" data-say="'+x+'">'+x+'</span>'}).join('');Array.prototype.forEach.call(document.querySelectorAll('.chip'),function(c){c.onclick=function(){speak(c.dataset.say,.48)}});el('todayStars').textContent='★'.repeat(dayMissionCount())+'☆'.repeat(Math.max(0,5-dayMissionCount()));var list=[['chant','🎵','천천히 따라 듣기','A, a, /애/, apple 순서로 천천히 따라합니다.'],['word','🔊','파닉스 소리/단어 듣기','소리와 단어를 구분해서 듣습니다.'],['speak','🗣','따라 말하기','부모가 듣고 완료를 눌러줍니다.'],['quiz','🎮','그림 찾기','문제를 듣고 맞는 그림/단어를 고릅니다.'],['write','✏️','따라 쓰기','큰 글자를 손가락이나 애플펜슬로 씁니다.']];el('missionList').innerHTML=list.map(function(a){return '<div class="mission '+(m[a[0]]?'done':'')+'"><div class="mission-icon">'+a[1]+'</div><div class="mission-text"><strong>'+a[2]+'</strong><p>'+a[3]+'</p></div><div class="mission-check">'+(m[a[0]]?'✓':'')+'</div></div>'}).join('');el('doneBtn').textContent=completed[currentDay]?'✓ 완료됨':'✓ 오늘 완료';el('prevBtn').disabled=currentDay<=1;el('nextBtn').disabled=currentDay>=365;if(refreshQuiz!==false)makeQuiz();renderQuiz();renderWeek();renderSearch();drawGuide();save()}
+function renderQuiz(){var p=getPlan(currentDay);el('choiceGrid').innerHTML=quizChoices.map(function(o){return '<button class="choice" data-word="'+o.word+'"><span class="big">'+o.emoji+'</span>'+o.word+'<br><small>'+((o.U||o.l)+' '+(o.l||''))+'</small></button>'}).join('');Array.prototype.forEach.call(document.querySelectorAll('.choice'),function(btn){btn.onclick=function(){var ok=btn.dataset.word===p.item.word;Array.prototype.forEach.call(document.querySelectorAll('.choice'),function(b){b.classList.remove('correct','wrong')});btn.classList.add(ok?'correct':'wrong');if(ok){playCorrectSound();el('quizResult').innerHTML='정답입니다! 딩동댕. 별 1개 획득!';markMission('quiz')}else{playWrongSound();el('quizResult').innerHTML='아쉽습니다. 다시 천천히 들어보세요.'}}})}
+function renderWeek(){var p=getPlan(currentDay);el('weekLabel').textContent='Week '+p.week;el('weekTitle').textContent=p.phase.title;el('weekGoal').textContent='목표: '+p.phase.goal;el('weekFocus').textContent='중점: '+p.phase.focus;var html='';for(var i=(p.week-1)*7+1;i<=Math.min(p.week*7,365);i++){var d=getPlan(i);html+='<button class="week-card '+(i===currentDay?'active':'')+'" data-day="'+i+'"><strong>Day '+i+' · '+d.main+' '+(completed[i]?'✓':'')+'</strong><p>'+d.detail+'</p></button>'}el('weekList').innerHTML=html;Array.prototype.forEach.call(document.querySelectorAll('#weekList .week-card'),function(b){b.onclick=function(){goDay(Number(b.dataset.day));openTab('today')}})}
+function renderYear(){el('phaseList').innerHTML=PHASES.map(function(p,i){return '<div class="phase-card"><small>'+p.weeks[0]+'~'+p.weeks[1]+'주차</small><h3>'+(i+1)+'. '+p.title+'</h3><p>목표: '+p.goal+'</p><p>중점: '+p.focus+'</p></div>'}).join('')}
+function renderSearch(){var q=(el('searchInput')?el('searchInput').value:'').toLowerCase(),html='';for(var i=1;i<=365;i++){var d=getPlan(i),text=(i+' '+d.week+' '+d.main+' '+d.detail+' '+d.phase.title+' '+d.item.word).toLowerCase();if(text.indexOf(q)>-1){html+='<button class="week-card" data-day="'+i+'"><strong>Day '+i+' · Week '+d.week+' '+d.item.emoji+'</strong><p>'+d.main+' · '+d.detail+'</p></button>'}}el('searchList').innerHTML=html||"<div class='notice'>검색 결과가 없습니다.</div>";Array.prototype.forEach.call(document.querySelectorAll('#searchList .week-card'),function(b){b.onclick=function(){goDay(Number(b.dataset.day));openTab('today')}})}
+function goDay(d){currentDay=Math.max(1,Math.min(365,d));clearCanvas();render(true);window.scrollTo({top:0,behavior:'smooth'})}
+function openTab(tab){Array.prototype.forEach.call(document.querySelectorAll('.page'),function(p){p.classList.remove('active')});Array.prototype.forEach.call(document.querySelectorAll('.nav-btn'),function(b){b.classList.remove('active')});el(tab+'Page').classList.add('active');document.querySelector("[data-tab='"+tab+"']").classList.add('active');if(tab==='year')renderYear();if(tab==='search')renderSearch();resizeCanvas()}
+function resizeCanvas(){canvas=el('traceCanvas');if(!canvas)return;var ratio=window.devicePixelRatio||1,rect=canvas.getBoundingClientRect();canvas.width=rect.width*ratio;canvas.height=canvas.clientHeight*ratio;ctx=canvas.getContext('2d');ctx.setTransform(ratio,0,0,ratio,0,0);ctx.lineWidth=9;ctx.lineCap='round';ctx.lineJoin='round';ctx.strokeStyle='#0f172a';drawGuide()}
+function drawGuide(){if(!ctx)return;ctx.clearRect(0,0,canvas.clientWidth,canvas.clientHeight);if(!guideVisible)return;var p=getPlan(currentDay);ctx.save();ctx.globalAlpha=.16;ctx.fillStyle='#0f172a';ctx.font=(p.mode==='abc'?'118px':'150px')+' -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(p.mode==='abc'?p.item.U+' '+p.item.l:p.item.l,canvas.clientWidth/2,canvas.clientHeight/2);ctx.restore()}
 function clearCanvas(){if(ctx)drawGuide()}
 function getPos(e){var r=canvas.getBoundingClientRect(),t=e.touches?e.touches[0]:e;return{x:t.clientX-r.left,y:t.clientY-r.top}}
 function startDraw(e){e.preventDefault();drawing=true;var p=getPos(e);ctx.beginPath();ctx.moveTo(p.x,p.y)}
 function moveDraw(e){if(!drawing)return;e.preventDefault();var p=getPos(e);ctx.lineTo(p.x,p.y);ctx.stroke()}
 function endDraw(){drawing=false}
-
-function completeToday(){
- completed[currentDay]=true;
- if(lastDoneDate!==todayKey()){streak+=1;lastDoneDate=todayKey();stars+=2}
- save();render(false);alert('오늘 학습 완료! 별 2개 추가!')
-}
-
-function init(){
- resizeCanvas();
- ['mousedown','touchstart'].forEach(function(ev){canvas.addEventListener(ev,startDraw,{passive:false})});
- ['mousemove','touchmove'].forEach(function(ev){canvas.addEventListener(ev,moveDraw,{passive:false})});
- ['mouseup','mouseleave','touchend','touchcancel'].forEach(function(ev){canvas.addEventListener(ev,endDraw)});
- window.addEventListener('resize',resizeCanvas);
- Array.prototype.forEach.call(document.querySelectorAll('.nav-btn'),function(b){b.onclick=function(){openTab(b.dataset.tab)}});
- el('chantBtn').onclick=slowChant;
- el('wordBtn').onclick=function(){speak(getPlan(currentDay).item.word,.58);markMission('word')};
- el('sentenceBtn').onclick=function(){var p=getPlan(currentDay);speak(p.week<=4?p.item.U+'. '+p.item.l+'. '+p.item.word+'.':'I see a '+p.item.word,.58)};
- el('quizSoundBtn').onclick=function(){speak(getPlan(currentDay).item.word,.56)};
- el('repeatTargetBtn').onclick=function(){speak(getPlan(currentDay).item.word,.56)};
- el('speakDoneBtn').onclick=function(){markMission('speak')};
- el('clearCanvasBtn').onclick=clearCanvas;
- el('guideBtn').onclick=function(){guideVisible=!guideVisible;el('guideBtn').textContent=guideVisible?'가이드 숨기기':'가이드 보기';drawGuide()};
- el('writingDoneBtn').onclick=function(){markMission('write');el('writingDoneBtn').textContent='쓰기 완료 ✓'};
- el('prevBtn').onclick=function(){goDay(currentDay-1)};
- el('nextBtn').onclick=function(){goDay(currentDay+1)};
- el('doneBtn').onclick=completeToday;
- el('searchInput').oninput=renderSearch;
- renderYear();makeQuiz();render(true)
-}
-
+function completeToday(){completed[currentDay]=true;if(lastDoneDate!==todayKey()){streak+=1;lastDoneDate=todayKey();stars+=2}save();render(false);alert('오늘 학습 완료! 별 2개 추가!')}
+function init(){resizeCanvas();['mousedown','touchstart'].forEach(function(ev){canvas.addEventListener(ev,startDraw,{passive:false})});['mousemove','touchmove'].forEach(function(ev){canvas.addEventListener(ev,moveDraw,{passive:false})});['mouseup','mouseleave','touchend','touchcancel'].forEach(function(ev){canvas.addEventListener(ev,endDraw)});window.addEventListener('resize',resizeCanvas);Array.prototype.forEach.call(document.querySelectorAll('.nav-btn'),function(b){b.onclick=function(){openTab(b.dataset.tab)}});el('chantBtn').onclick=slowChant;el('soundBtn').onclick=function(){speak(getPlan(currentDay).item.soundSpeak,.42);markMission('word')};el('wordBtn').onclick=function(){speak(getPlan(currentDay).item.word,.50);markMission('word')};el('sentenceBtn').onclick=function(){var p=getPlan(currentDay);speak(p.week<=4?p.item.name+'. '+p.item.l+'. '+p.item.soundSpeak+'. '+p.item.word+'.':'I see a '+p.item.word,.50)};el('quizSoundBtn').onclick=function(){speak(getPlan(currentDay).item.word,.48)};el('repeatTargetBtn').onclick=function(){slowChant()};el('speakDoneBtn').onclick=function(){markMission('speak')};el('clearCanvasBtn').onclick=clearCanvas;el('guideBtn').onclick=function(){guideVisible=!guideVisible;el('guideBtn').textContent=guideVisible?'가이드 숨기기':'가이드 보기';drawGuide()};el('writingDoneBtn').onclick=function(){markMission('write');el('writingDoneBtn').textContent='쓰기 완료 ✓'};el('prevBtn').onclick=function(){goDay(currentDay-1)};el('nextBtn').onclick=function(){goDay(currentDay+1)};el('doneBtn').onclick=completeToday;el('searchInput').oninput=renderSearch;renderYear();makeQuiz();render(true)}
 document.addEventListener('DOMContentLoaded',init);
 </script>
 </body>
